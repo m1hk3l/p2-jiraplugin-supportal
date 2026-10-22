@@ -288,6 +288,44 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>container-development</id>
+            <properties>
+                <container.pg.host>postgres</container.pg.host>
+                <container.pg.port>5432</container.pg.port>
+                <container.pg.database>jira</container.pg.database>
+                <container.pg.user>jira</container.pg.user>
+                <container.pg.password>jira-local-development</container.pg.password>
+            </properties>
+            <build><plugins><plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>jira-maven-plugin</artifactId>
+                <configuration>
+                    <server>0.0.0.0</server>
+                    <productDataPath>${basedir}/target/container-postgres-home.zip</productDataPath>
+                    <productLicense>AAAB8w0ODAoPeNp9Uk2P2jAQvedXWOoNydmELVKLFKlL4u7SLglKQj+27cEkA3gb7GjssMu/rwnQls9DDvHMvPfmvXmTN0BGfE08n3jdftfv927J/SgnXc9/58wRQC5UXQO6j6IAqYGVwgglAxbnLB2nw4w5cbOcAiaziQbUge85oZKGFybmSwjKmiMKvfjATcW1Fly6hVo64waLBdcQcQPBhot6Per5zo4lX9fQjofJaMTScHj3uC+x11rgup0b3z7sudiIi+oSWQa4AhxGweD+fU6/Tb68pZ+fnh7owPO/Os8CuVujKpvCuJsfqtXMvHAE1+KKFQQGG3A+2cp412XJeQjSHLVkzVQXKOrWn/bljH/nNmslXPa30+nESU4/Jikdp0k0CfNhEtNJxmwhCBGsFSWZrolZANmhECYLVQISu9gzFIb8WBhT/+zf3MyVe2DOTbWdoLCd+OWSSBGpDCmFNiimjQGLLDQxihSNNmppU3Yd67c0ILksjhOxqsKU3eUsooPvG4kXUrli/MlF7dayEU7kb6lepJOxOLAf7XneFmkfCuCp95nh+LdwhfegL8E5l0LzNo4IVlApi0Vy0GZvs9O6b+vHZxzBv0toB3Yuk5lCwuualHs8fSD0/3NqdZ48nBd+5bjYilfNdokZr6zmP7TmY5YwLAIUNq8MbmR8GfaV9ulfLz1K+3g9j1YCFDeq7aYROMQbwMIvHimNt7/bJCCIX02nj</productLicense>
+                    <dataSource combine.self="override">
+                        <driver>org.postgresql.Driver</driver>
+                        <libArtifacts><libArtifact>
+                            <groupId>org.postgresql</groupId>
+                            <artifactId>postgresql</artifactId>
+                            <version>${postgresql.driver.version}</version>
+                        </libArtifact></libArtifacts>
+                        <defaultDatabase>jdbc:postgresql://${container.pg.host}:${container.pg.port}/postgres</defaultDatabase>
+                        <systemUsername>${container.pg.user}</systemUsername>
+                        <systemPassword>${container.pg.password}</systemPassword>
+                        <dropAndReCreateDatabase>false</dropAndReCreateDatabase>
+                        <url>jdbc:postgresql://${container.pg.host}:${container.pg.port}/${container.pg.database}</url>
+                        <schema>jiradb</schema>
+                        <username>${container.pg.user}</username>
+                        <password>${container.pg.password}</password>
+                        <jndi>jdbc/JiraDS</jndi>
+                    </dataSource>
+                </configuration>
+            </plugin></plugins></build>
+        </profile>
+    </profiles>
     <properties>
         <jira.version>11.3.12</jira.version>
         <platform.version>8.0.0</platform.version>

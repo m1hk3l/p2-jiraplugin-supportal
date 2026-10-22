@@ -1,0 +1,9 @@
+target/
+node_modules/
+.idea/
+*.iml
+.env
+*.key
+id_ed25519*
+dev_key*
+.DS_Store

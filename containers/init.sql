@@ -1,0 +1,2 @@
+CREATE SCHEMA IF NOT EXISTS jiradb AUTHORIZATION jira;
+ALTER ROLE jira IN DATABASE jira SET search_path TO jiradb;

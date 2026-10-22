@@ -1,0 +1,72 @@
+x-development: &development
+  image: localhost/supportal-development:java21
+  build:
+    context: .
+    dockerfile: Containerfile
+  working_dir: /workspace/supportal
+  init: true
+  user: "0:0"
+  userns_mode: "keep-id:uid=1000,gid=1000"
+  volumes:
+    - .:/workspace/supportal:z
+    - developer-home:/home/developer
+    - build-data:/workspace/supportal/target
+    - frontend-dependencies:/workspace/supportal/src/main/frontend/node_modules
+  environment: &environment
+    PGHOST: postgres
+    PGPORT: "5432"
+    PGDATABASE: jira
+    PGUSER: jira
+    PGPASSWORD: jira-local-development
+  stop_grace_period: 90s
+
+services:
+  postgres:
+    image: postgres:17-bookworm
+    environment:
+      POSTGRES_DB: jira
+      POSTGRES_USER: jira
+      POSTGRES_PASSWORD: jira-local-development
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./containers/init.sql:/docker-entrypoint-initdb.d/01-jira.sql:ro,z
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jira -d jira"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  jira:
+    <<: *development
+    command: ["jira"]
+    stdin_open: true
+    tty: true
+    ports:
+      - "127.0.0.1:2990:2990"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  dev:
+    <<: *development
+    command: ["ssh"]
+    environment:
+      <<: *environment
+      DEV_SSH_PUBLIC_KEY: ${DEV_SSH_PUBLIC_KEY:-}
+    ports:
+      - "127.0.0.1:2222:22"
+    volumes:
+      - .:/workspace/supportal:z
+      - developer-home:/home/developer
+      - build-data:/workspace/supportal/target
+      - frontend-dependencies:/workspace/supportal/src/main/frontend/node_modules
+      - ssh-host-keys:/etc/ssh/host-keys
+    shm_size: "1gb"
+
+volumes:
+  postgres-data:
+  developer-home:
+  build-data:
+  frontend-dependencies:
+  ssh-host-keys:
