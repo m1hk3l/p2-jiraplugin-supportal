@@ -7,3 +7,4 @@ node_modules/
 id_ed25519*
 dev_key*
 .DS_Store
+__pycache__/

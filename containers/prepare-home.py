@@ -1,6 +1,7 @@
 """Generate a fresh PostgreSQL home archive; preserve existing running Jira data."""
 import os
 from pathlib import Path
+from shutil import rmtree
 from xml.etree.ElementTree import Element, SubElement, tostring
 from zipfile import ZipFile, ZIP_DEFLATED
 
@@ -18,6 +19,13 @@ for name, value in [
     SubElement(jdbc, name).text = value
 output = Path("target/container-postgres-home.zip")
 output.parent.mkdir(parents=True, exist_ok=True)
+# AMPS reuses this extraction directory. Clear a failed attempt's old layout so
+# getRootDir sees exactly one top-level folder. Jira's working home is separate.
+staging = Path("target/jira/tmp-resources")
+if staging.exists():
+    rmtree(staging)
 with ZipFile(output, "w", ZIP_DEFLATED) as archive:
-    archive.writestr("jira-home/dbconfig.xml", tostring(root, encoding="utf-8", xml_declaration=True))
+    # AMPS strips one wrapper folder, then moves jira-home to target/jira/home.
+    archive.writestr("generated-resources/jira-home/dbconfig.xml",
+                     tostring(root, encoding="utf-8", xml_declaration=True))
 print(f"Prepared {output}")

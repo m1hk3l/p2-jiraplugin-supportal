@@ -121,6 +121,20 @@ The source is a bind mount of the repository, so edits appear directly in Git. J
 
 ## Troubleshooting
 
+### Jira exits with `Unable to copy home directory`
+
+AMPS expects the home ZIP to contain `<wrapper>/jira-home/dbconfig.xml`. An archive with only `jira-home/dbconfig.xml` fails because AMPS removes the first directory level before looking for `jira-home`.
+
+Startup now generates `generated-resources/jira-home/dbconfig.xml` and clears only the temporary extraction directory `target/jira/tmp-resources`, including leftovers from a failed start. Existing Jira home, PostgreSQL data and dependency caches are preserved.
+
+Pull the fix and restart Jira; the source scripts are shared with the container, so an image rebuild is unnecessary:
+
+```sh
+git pull --ff-only &&
+podman-compose up -d jira &&
+podman-compose logs -f jira
+```
+
 ### Jira exits with `atlas-mvn: Permission denied`
 
 The SDK 9.1.1 archive ships executable scripts with owner-only execute permissions. Jira runs as `developer`, while the SDK is installed by root. The image normalizes the SDK tree with `chmod -R a+rX` and verifies `atlas-mvn --version` as `developer` during the image build.
@@ -173,7 +187,9 @@ Only `dev` declares a build; both development services use the same locally buil
 
 ## Configuration and verification
 
-The original host-specific POM settings remain available outside the container profile. The new profile overrides the absent home ZIP and `localhost` database address. Startup generates `target/container-postgres-home.zip` containing a PostgreSQL `dbconfig.xml`; existing Jira home/database data are preserved. AMPS is configured with `dropAndReCreateDatabase=false`.
+The original host-specific POM settings remain available outside the container profile. The new profile overrides the absent home ZIP and `localhost` database address. Startup generates `target/container-postgres-home.zip` containing `generated-resources/jira-home/dbconfig.xml` for PostgreSQL; existing Jira home/database data are preserved. AMPS is configured with `dropAndReCreateDatabase=false`.
+
+Run the home preparation regression checks with `python3 -m unittest discover -s containers/tests -v` inside the development container. They cover AMPS's archive layout, recovery after a failed extraction, XML escaping and preservation of existing Jira home files.
 
 Local-only database credentials are declared in Compose. Jira HTTP and SSH bind to host loopback. JDBC addresses use Compose service DNS (`postgres`), not the host network. Base images are multi-architecture; the project does not force amd64 emulation.
 
