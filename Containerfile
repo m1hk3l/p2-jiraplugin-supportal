@@ -7,9 +7,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends openssh-server 
 COPY --from=node /usr/local/bin/node /usr/local/bin/node
 COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
 RUN ln -s ../lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm && ln -s ../lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
-RUN curl --fail --location --retry 3 "$SDK_URL" -o /tmp/sdk.tar.gz && echo "$SDK_SHA256  /tmp/sdk.tar.gz" | sha256sum -c - && mkdir /opt/atlassian-plugin-sdk && tar -xzf /tmp/sdk.tar.gz --strip-components=1 -C /opt/atlassian-plugin-sdk && rm /tmp/sdk.tar.gz && test -x /opt/atlassian-plugin-sdk/bin/atlas-mvn
+RUN curl --fail --location --retry 3 "$SDK_URL" -o /tmp/sdk.tar.gz \
+    && echo "$SDK_SHA256  /tmp/sdk.tar.gz" | sha256sum -c - \
+    && mkdir /opt/atlassian-plugin-sdk \
+    && tar -xzf /tmp/sdk.tar.gz --strip-components=1 -C /opt/atlassian-plugin-sdk \
+    && chmod -R a+rX /opt/atlassian-plugin-sdk \
+    && rm /tmp/sdk.tar.gz
 ENV PATH="/opt/atlassian-plugin-sdk/bin:${PATH}"
 RUN useradd --create-home --shell /bin/bash developer && passwd -d developer && mkdir -p /workspace/supportal /run/sshd
+# Validate SDK scripts, the bundled Maven and its configuration as the runtime user.
+RUN runuser -u developer -- /opt/atlassian-plugin-sdk/bin/atlas-mvn --version
 COPY containers/sshd_config /etc/ssh/sshd_config
 COPY containers/entrypoint.sh /usr/local/bin/dev-entrypoint
 RUN chmod 755 /usr/local/bin/dev-entrypoint

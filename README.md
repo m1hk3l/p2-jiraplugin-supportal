@@ -121,6 +121,21 @@ The source is a bind mount of the repository, so edits appear directly in Git. J
 
 ## Troubleshooting
 
+### Jira exits with `atlas-mvn: Permission denied`
+
+The SDK 9.1.1 archive ships executable scripts with owner-only execute permissions. Jira runs as `developer`, while the SDK is installed by root. The image normalizes the SDK tree with `chmod -R a+rX` and verifies `atlas-mvn --version` as `developer` during the image build.
+
+After updating the checkout, rebuild the shared image and recreate the services:
+
+```sh
+git pull --ff-only
+podman-compose build dev
+podman-compose up -d --force-recreate jira dev
+podman-compose logs -f jira
+```
+
+Existing named volumes are reused.
+
 ### Build fails with `no space left on device`
 
 An error writing `/var/tmp/container_images_storage...` means the image builder exhausted storage in its Linux environment. A successful `/tmp/sdk.tar.gz: OK` confirms that the SDK download and checksum passed; the failure happened while committing the image layer.
