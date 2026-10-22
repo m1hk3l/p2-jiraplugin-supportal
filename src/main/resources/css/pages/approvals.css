@@ -1,0 +1,11 @@
+/* approvals.css — user/approvals page (native-styled list). */
+/* ===================== Approvals page (native-styled list, single full-width card) ===================== */
+/* the approvals page has one card, not the home page's open/closed pair, so the
+   wrapper collapses to a single column there. :has() handles modern browsers;
+   the explicit .myreq-wrapper-single class is the fallback (set on the .vm). */
+.myreq-wrapper-single { grid-template-columns: 1fr !important; }
+.myreq-wrapper:has(.myreq-card-full) { grid-template-columns: 1fr; }
+.myreq-card-subtitle { color: #2b2e36; opacity: 0.7; margin: -8px 0 16px 0; }
+.myreq-empty { color: #2b2e36; opacity: 0.6; padding: 12px 14px; }
+.myreq-loading { color: #2b2e36; opacity: 0.6; padding: 12px 14px; }
+.myreq-error { color: #8d575a; padding: 12px 14px; }

@@ -1,0 +1,263 @@
+#set($pageTitle = "Email and distribution list - ITabi")
+#parse("templates/supportal/_shell_top.vm")
+
+<main class="supportal-main">
+    <div class="journey-container">
+        <nav class="journey-nav">
+            <ul class="journey-steps">
+                <li class="journey-step completed">
+                    <a href="$!{baseUrl}/plugins/servlet/supportal" class="step-main">
+                        <div class="step-circle"><i class="pi pi-home"></i></div>
+                        <div class="step-label label-small" data-i18n data-en="ITSM Portal" data-et="ITSM Portaal" data-ru="ITSM Портал">ITSM Portal</div>
+                    </a>
+                    <div class="connector-line"></div>
+                    <div class="step-alternatives">
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/something-is-broken-or-not-working" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-exclamation-triangle"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Something is broken or not working" data-et="Midagi on katki või ei tööta" data-ru="Что-то сломано или не работает">Something is broken or not working</div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/itak-services" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-shield"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="ITAK services" data-et="ITAK teenused" data-ru="Услуги ITAK">ITAK services</div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="journey-step completed">
+                    <a href="$!{baseUrl}/plugins/servlet/supportal/i-need-something" class="step-main">
+                        <div class="step-circle"><i class="pi pi-briefcase"></i></div>
+                        <div class="step-label label-small" data-i18n data-en="I need something" data-et="Mul on midagi vaja" data-ru="Мне нужно что-то">I need something</div>
+                    </a>
+                    <div class="connector-line"></div>
+                    <div class="step-alternatives">
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/hardware" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-desktop"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Hardware" data-et="Riistvara" data-ru="Оборудование">Hardware</div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/telecom" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-phone"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Telecom" data-et="Telekommunikatsioon" data-ru="Телекоммуникации">Telecom</div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/software" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-th-large"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Software" data-et="Tarkvara" data-ru="Программное обеспечение">Software</div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="journey-step completed">
+                    <a href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions" class="step-main">
+                        <div class="step-circle"><i class="pi pi-key"></i></div>
+                        <div class="step-label label-small" data-i18n data-en="Access or permissions" data-et="Ligipääs või õigused" data-ru="Доступ или права">Access or permissions</div>
+                    </a>
+                    <div class="connector-line"></div>
+                    <div class="step-alternatives">
+                        <a href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions/application" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-th-large"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Application" data-et="Rakendus" data-ru="Приложение">Application</div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions/network-folder" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-folder"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Network folder" data-et="Võrgukataloog" data-ru="Сетевая папка">Network folder</div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="journey-step active">
+                    <a href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions/email-and-distribution-list" class="step-main">
+                        <div class="step-circle"><i class="pi pi-envelope"></i></div>
+                        <div class="step-label label-small" data-i18n data-en="Email and distribution list" data-et="E-post ja meililist" data-ru="Электронная почта и список рассылки">Email and distribution list</div>
+                        <div class="current-indicator label-minimum" data-i18n data-en="You are here" data-et="Sa oled siin" data-ru="Вы здесь">You are here</div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="network-folder-page">
+        <section class="network-folder-panel network-folder-page-panel active" id="shared-mailbox-panel"
+                 aria-labelledby="shared-mailbox-title"
+                 data-return-url="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions">
+            <div class="network-folder-panel-header">
+                <div class="network-folder-panel-heading">
+                    <span class="network-folder-panel-icon"><i class="pi pi-envelope"></i></span>
+                    <div>
+                        <h1 class="network-folder-panel-title" id="shared-mailbox-title" data-i18n
+                            data-en="Shared mailbox or distribution list access"
+                            data-et="Ligipääs jagatud postkastile või meililistile"
+                            data-ru="Доступ к общей почте или списку рассылки">Shared mailbox or distribution list access</h1>
+                        <p class="network-folder-panel-subtitle" data-i18n
+                           data-en="Choose a mailbox or distribution list and the role you need."
+                           data-et="Valige postkast või meililist ja vajalik roll."
+                           data-ru="Выберите почтовый ящик или список рассылки и нужную роль.">Choose a mailbox or distribution list and the role you need.</p>
+                    </div>
+                </div>
+                <a class="network-folder-panel-close" id="shared-mailbox-close"
+                   href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions"
+                   data-i18n-attr="aria-label" data-en-aria-label="Back" data-et-aria-label="Tagasi"
+                   data-ru-aria-label="Назад" aria-label="Back">
+                    <i class="pi pi-times"></i>
+                </a>
+            </div>
+
+            <div class="network-folder-panel-body">
+                <div id="shared-mailbox-form-view">
+                    <form id="shared-mailbox-form">
+                        <div class="form-group network-folder-user-group">
+                            <label class="form-label" for="shared-mailbox-user-picker-trigger">
+                                <span data-i18n data-en="User" data-et="Kasutaja" data-ru="Пользователь">User</span>
+                                <span class="required">*</span>
+                            </label>
+                            <div class="user-picker" id="shared-mailbox-user-picker">
+                                <div class="user-picker-trigger" id="shared-mailbox-user-picker-trigger" tabindex="0">
+                                    <i class="pi pi-user user-picker-icon"></i>
+                                    <span class="user-picker-value" id="shared-mailbox-user-picker-value">Select user...</span>
+                                    <i class="pi pi-chevron-down user-picker-arrow" id="shared-mailbox-user-picker-arrow"></i>
+                                </div>
+                                <div class="user-picker-dropdown" id="shared-mailbox-user-picker-dropdown">
+                                    <div class="user-picker-search-wrap">
+                                        <i class="pi pi-search user-picker-search-icon"></i>
+                                        <input type="text" class="user-picker-search" id="shared-mailbox-user-picker-search"
+                                               autocomplete="off" spellcheck="false" placeholder="Search user..."/>
+                                        <button class="user-picker-clear-search" id="shared-mailbox-user-picker-clear-search"
+                                                style="display:none;" type="button" aria-label="Clear search">
+                                            <i class="pi pi-times"></i>
+                                        </button>
+                                    </div>
+                                    <div class="user-picker-list" id="shared-mailbox-user-picker-list">
+                                        <div class="user-picker-empty">
+                                            <i class="pi pi-search" style="font-size:20px;opacity:0.3;margin-bottom:8px;display:block;"></i>
+                                            Type to search users...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="shared-mailbox-user-select" value=""/>
+                        </div>
+
+                        <div class="form-group network-folder-path-group">
+                            <label class="form-label" for="shared-mailbox-name">
+                                <span data-i18n data-en="Shared mailbox or distribution list"
+                                      data-et="Jagatud postkast või meililist"
+                                      data-ru="Общая почта или список рассылки">Shared mailbox or distribution list</span>
+                                <span class="required">*</span>
+                            </label>
+                            <div class="network-folder-path-picker">
+                                <i class="pi pi-envelope network-folder-path-icon"></i>
+                                <input class="form-input network-folder-path-input" id="shared-mailbox-name"
+                                       type="text" autocomplete="off" spellcheck="false"
+                                       data-i18n-attr="placeholder"
+                                       data-en-placeholder="Search shared mailbox or distribution list..."
+                                       data-et-placeholder="Otsi jagatud postkasti või meililisti..."
+                                       data-ru-placeholder="Найдите общую почту или список рассылки..."
+                                       placeholder="Search shared mailbox or distribution list..."/>
+                                <div class="network-folder-path-results" id="shared-mailbox-results" hidden></div>
+                            </div>
+                            <p class="network-folder-field-hint" data-i18n
+                               data-en="Start typing to filter the scrollable list from the Public schema."
+                               data-et="Alustage filtreerimiseks kirjutamist, et näha keritavat loendit Public schema-st."
+                               data-ru="Начните вводить для фильтрации прокручиваемого списка из Public schema.">Start typing to filter the scrollable list from the Public schema.</p>
+                        </div>
+
+                        <div class="network-folder-access-step" id="shared-mailbox-role-step" hidden>
+                            <label class="form-label">
+                                <span data-i18n data-en="What role do you need?"
+                                      data-et="Millist rolli vajate?"
+                                      data-ru="Какая роль вам нужна?">What role do you need?</span>
+                                <span class="required">*</span>
+                            </label>
+                            <div class="network-folder-access-options shared-mailbox-role-options" id="shared-mailbox-role-options">
+                                <button class="network-folder-access-card" type="button" data-role="Read and Manage (Mailbox appears in outlook and you can read mail)">
+                                    <span class="network-folder-access-icon"><i class="pi pi-inbox"></i></span>
+                                    <span>
+                                        <strong>Read and Manage</strong>
+                                        <small>Mailbox appears in Outlook and you can read mail</small>
+                                    </span>
+                                    <i class="pi pi-check network-folder-access-check"></i>
+                                </button>
+                                <button class="network-folder-access-card" type="button" data-role="Send as (Send mail as shared mailbox)">
+                                    <span class="network-folder-access-icon"><i class="pi pi-send"></i></span>
+                                    <span>
+                                        <strong>Send as</strong>
+                                        <small>Send mail as the shared mailbox</small>
+                                    </span>
+                                    <i class="pi pi-check network-folder-access-check"></i>
+                                </button>
+                                <button class="network-folder-access-card" type="button" data-role="Send on behalf of (Send mail as &quot;Name Surname on behalf of Shared Mailbox&quot;)">
+                                    <span class="network-folder-access-icon"><i class="pi pi-user-edit"></i></span>
+                                    <span>
+                                        <strong>Send on behalf of</strong>
+                                        <small>Send mail as "Name Surname on behalf of Shared Mailbox"</small>
+                                    </span>
+                                    <i class="pi pi-check network-folder-access-check"></i>
+                                </button>
+                                <button class="network-folder-access-card" type="button" data-role="Read and Manage + Send As">
+                                    <span class="network-folder-access-icon"><i class="pi pi-briefcase"></i></span>
+                                    <span>
+                                        <strong>Read and Manage + Send As</strong>
+                                        <small>Outlook visibility plus send-as rights</small>
+                                    </span>
+                                    <i class="pi pi-check network-folder-access-check"></i>
+                                </button>
+                                <button class="network-folder-access-card" type="button" data-role="Read and Manage + Send on behalf of">
+                                    <span class="network-folder-access-icon"><i class="pi pi-users"></i></span>
+                                    <span>
+                                        <strong>Read and Manage + Send on behalf of</strong>
+                                        <small>Outlook visibility plus send-on-behalf rights</small>
+                                    </span>
+                                    <i class="pi pi-check network-folder-access-check"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="network-folder-form-error" id="shared-mailbox-form-error" role="alert" hidden></div>
+
+                        <div class="network-folder-description-step" id="shared-mailbox-description-step" hidden>
+                            <div class="form-group">
+                                <label class="form-label" for="shared-mailbox-description" data-i18n
+                                       data-en="Business reason and comments"
+                                       data-et="Äriline põhjus ja kommentaarid"
+                                       data-ru="Бизнес-обоснование и комментарии">Business reason and comments</label>
+                                <p class="network-folder-field-hint" data-i18n
+                                   data-en="Optional. If left empty, we will add a default description using the selected user, role, and mailbox."
+                                   data-et="Valikuline. Kui jätate välja tühjaks, lisame vaikimisi kirjelduse valitud kasutaja, rolli ja postkasti põhjal."
+                                   data-ru="Необязательно. Если оставить поле пустым, мы добавим стандартное описание на основе выбранного пользователя, роли и почтового ящика.">Optional. If left empty, we will add a default description using the selected user, role, and mailbox.</p>
+                                <textarea class="form-textarea" id="shared-mailbox-description" rows="4"
+                                          data-i18n-attr="placeholder"
+                                          data-en-placeholder="Optional business reason or extra context..."
+                                          data-et-placeholder="Valikuline äriline põhjendus või lisainfo..."
+                                          data-ru-placeholder="Необязательное бизнес-обоснование или дополнительный контекст..."
+                                          placeholder="Optional business reason or extra context..."></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button class="app-btn app-btn-primary" id="shared-mailbox-submit" type="submit"
+                                        data-i18n data-en="Submit request" data-et="Esita taotlus"
+                                        data-ru="Отправить запрос">Submit request</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="shared-mailbox-loading-view" hidden>
+                    <div class="loading-message">
+                        <div class="loading-icon"><i class="pi pi-spin pi-spinner"></i></div>
+                        <p class="loading-text" data-i18n data-en="Submitting request..." data-et="Pöördumine esitatakse..."
+                           data-ru="Отправка запроса...">Submitting request...</p>
+                    </div>
+                </div>
+                <div id="shared-mailbox-success-view" hidden>
+                    <div class="success-message">
+                        <div class="success-icon"><i class="pi pi-check"></i></div>
+                        <p class="success-text" data-i18n data-en="Request submitted successfully."
+                           data-et="Pöördumine on edukalt esitatud." data-ru="Запрос успешно отправлен.">Request submitted successfully.</p>
+                        <p class="success-subtext"><a class="success-link" id="shared-mailbox-success-link"
+                           href="$!{baseUrl}/plugins/servlet/supportal" data-i18n
+                           data-en="View request" data-et="Vaata pöördumist" data-ru="Открыть запрос">View request</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+#parse("templates/supportal/_shell_bottom.vm")

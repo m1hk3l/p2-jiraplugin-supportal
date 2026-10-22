@@ -1,0 +1,22 @@
+## ============================================================================
+## _macros.vm — Supportal Velocity macro library. #parse-d by _shell_top.vm,
+## so every page rendered through the shell can use these without extra setup.
+## Core Velocity only (#macro is core; #define is not used in this project).
+## ============================================================================
+
+## #t — the client-switchable i18n text span. Collapses the repeated
+## triple-language attribute markup into one readable call:
+##     #t("How can we help?" "Kuidas saame aidata?" "Как мы можем помочь?")
+## renders
+##     <span data-i18n data-en="..." data-et="..." data-ru="...">EN text</span>
+## which the shared i18n engine (js/core.js) re-texts on language switch.
+##
+## NOTE: deliberately NOT $i18n.getText()/supportal.properties — that fixes the
+## language at render time and would break the client-side switcher. The
+## properties bundle remains for genuinely server-fixed strings (module labels
+## in atlassian-plugin.xml). See docs/ARCHITECTURE.md §8.
+##
+## Existing templates still carry hand-written data-i18n spans; they are fully
+## compatible (the engine reads the markup, not the macro). Convert them to #t
+## gradually as each template is next touched.
+#macro(t $en $et $ru)<span data-i18n data-en="$en" data-et="$et" data-ru="$ru">$en</span>#end

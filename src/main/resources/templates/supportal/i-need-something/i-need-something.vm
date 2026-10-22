@@ -1,0 +1,89 @@
+#set($pageTitle = "ITabi - I need something")
+#parse("templates/supportal/_shell_top.vm")
+
+<main class="supportal-main">
+
+    <!-- Module 1: journey breadcrumb (text filled by renderJourneyNav) -->
+    <div class="journey-container">
+        <nav class="journey-nav">
+            <ul class="journey-steps">
+
+                <li class="journey-step completed">
+                    <a href="$!{baseUrl}/plugins/servlet/supportal" class="step-main">
+                        <div class="step-circle"><i class="pi pi-home"></i></div>
+                        <div class="step-label label-small" id="step1-main"></div>
+                        <div class="current-indicator label-minimum">You are here</div>
+                    </a>
+                    <div class="connector-line"></div>
+                    <div class="step-alternatives">
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/something-is-broken-or-not-working" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-exclamation-triangle"></i></div>
+                            <div class="alt-label label-tiny" id="step1-alt1"></div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/itak-services" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-shield"></i></div>
+                            <div class="alt-label label-tiny" id="step1-alt2"></div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="journey-step active">
+                    <a href="$!{baseUrl}/plugins/servlet/supportal/i-need-something" class="step-main">
+                        <div class="step-circle"><i class="pi pi-briefcase"></i></div>
+                        <div class="step-label label-small" id="step2-main"></div>
+                        <div class="current-indicator label-minimum" id="current-indicator"></div>
+                    </a>
+                </li>
+
+                <li class="journey-step">
+                    <a href="#" class="step-main">
+                        <div class="step-circle"><i class="pi pi-ellipsis-h"></i></div>
+                        <div class="step-label label-small"></div>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Module 2: intro text + terms-of-use FAQ modal (filled by renderINeedIntro) -->
+    <div id="submitting-a-request-popup-faq-container"></div>
+
+    <!-- Module 3: category cards (filled by renderINeedCards; toggle by initINeedViewToggle) -->
+    <div class="need-container">
+
+        <div class="need-header">
+            <h3 id="i-need-title" class="need-title"></h3>
+            <div class="view-switch">
+                <button type="button" class="view-toggle active" data-view="enduser">
+                    <i class="pi pi-user"></i><span id="end-user-label"></span>
+                </button>
+                <button type="button" class="view-toggle" data-view="ittoit">
+                    <i class="pi pi-cog"></i><span id="it-to-it-label"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- End user grid -->
+        <div class="need-grid enduser-view">
+            <a href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions" class="need-card" id="end-user-need-card-1"></a>
+            <a href="$!{baseUrl}/plugins/servlet/supportal/hardware" class="need-card" id="end-user-need-card-2"></a>
+            <a href="$!{baseUrl}/plugins/servlet/supportal/telecom" class="need-card" id="end-user-need-card-3"></a>
+            <a href="$!{baseUrl}/plugins/servlet/supportal/software" class="need-card" id="end-user-need-card-4"></a>
+            <a href="$!{baseUrl}/plugins/servlet/supportal/new-mailbox-or-mailing-list" class="need-card" id="end-user-need-card-5"></a>
+            <a href="$!{baseUrl}/plugins/servlet/supportal/presentation-device-or-help" class="need-card" id="end-user-need-card-6"></a>
+            <a href="#" data-jira-url="$!{baseUrl}/servicedesk/customer/portal/31/create/366" class="need-card" id="end-user-need-card-7"></a>
+        </div>
+
+        <!-- IT-to-IT grid -->
+        <div class="need-grid ittoit-view" style="display: none;">
+            <a href="#" data-jira-url="$!{baseUrl}/plugins/servlet/desk/portal/31/create/404" class="need-card" id="it-to-it-need-card-1"></a>
+        </div>
+
+        <!-- other / info footer line (filled by renderINeedCards) -->
+        <div class="other-or-info line-small" id="i-need-other-or-info"></div>
+
+    </div>
+
+</main>
+#parse("templates/supportal/_shell_bottom.vm")

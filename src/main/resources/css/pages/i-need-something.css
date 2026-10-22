@@ -1,0 +1,78 @@
+/* pages/i-need-something.css — intro + terms trigger, FAQ handbook modal, card header + End-user/IT-to-IT view switch, other/info footer, responsive. */
+/* --- Module 2: intro paragraphs + "read the terms" trigger --- */
+.submitting-a-request-popup-faq-container { max-width: 1300px; margin: 0 auto; padding: 0; }
+.i-need-something-intro-text { color: #2b2e36; opacity: 0.85; text-align: justify; }
+.i-need-something-intro-text .highlight { color: #008834; font-weight: 600; opacity: 1; }
+.i-need-something-intro-text .highlight.modal-btn { color: #008834; font-weight: 600; opacity: 1; cursor: pointer; text-decoration: underline !important; }
+.i-need-something-intro-text .highlight.modal-btn:hover,
+.i-need-something-intro-text .highlight.modal-btn:active,
+.i-need-something-intro-text .highlight.modal-btn:focus { color: #008834; font-weight: 600; opacity: 1; cursor: pointer; text-decoration: none !important; }
+
+/* --- Module 2: terms-of-use FAQ handbook modal --- */
+.submitting-a-request-popup-faq-app-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; justify-content: center; align-items: center; z-index: 1000; padding: 20px; opacity: 0; transition: opacity 0.2s ease; }
+.submitting-a-request-popup-faq-app-modal.active { opacity: 1; }
+.submitting-a-request-popup-faq-app-modal.active .submitting-a-request-popup-faq-app-modal-content { transform: scale(1); }
+.submitting-a-request-popup-faq-app-modal-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(43,46,54,0.25); backdrop-filter: blur(1px); }
+.submitting-a-request-popup-faq-app-modal-content { background: white; border-radius: 8px; max-width: 1000px; width: 100%; max-height: 70vh; display: flex; flex-direction: column; position: relative; z-index: 1; box-shadow: 0 4px 20px rgba(43,46,54,0.12); transform: scale(0.96); transition: transform 0.2s ease; }
+.submitting-a-request-popup-faq-app-modal-submitting-a-request-popup-faq-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid #f3f1ef; flex-shrink: 0; }
+.submitting-a-request-popup-faq-app-detail-title { font-size: 18px; font-weight: 600; color: #2b2e36; line-height: 1.3; letter-spacing: -0.01em; padding-right: 24px; }
+.submitting-a-request-popup-faq-app-modal-close { background: none; border: none; cursor: pointer; padding: 6px; color: #2b2e36; opacity: 0.4; transition: all 0.2s; flex-shrink: 0; border-radius: 4px; }
+.submitting-a-request-popup-faq-app-modal-close:hover { opacity: 0.8; background: #f7f7f9; }
+.submitting-a-request-popup-faq-app-modal-body { padding: 24px; overflow-y: auto; }
+.submitting-a-request-popup-faq-link { color: #008834; text-decoration: underline !important; }
+.submitting-a-request-popup-faq-link:hover,
+.submitting-a-request-popup-faq-link:active,
+.submitting-a-request-popup-faq-link:focus { color: #008834 !important; text-decoration: none !important; }
+.submitting-a-request-popup-faq-extra-info { max-width: 1300px; margin: 0 auto; }
+.submitting-a-request-popup-faq-header { background: #f7f7f9; border-left: 3px solid #008834; border-radius: 8px; display: block; padding: 24px 28px; margin-bottom: 16px; margin-top: 16px; }
+.submitting-a-request-popup-faq-header h1 { font-weight: 600; color: #008834; display: inline-flex; align-items: center; gap: 6px; }
+.submitting-a-request-popup-faq-handbook-container { display: flex; gap: 24px; }
+.submitting-a-request-popup-faq-sidebar { flex: 0 0 220px; display: flex; flex-direction: column; gap: 16px; }
+.submitting-a-request-popup-faq-nav-button { background: #fdfdfb; border: 1px solid #e2ded9; border-radius: 8px; padding: 12px 16px; font-weight: 500; color: #2b2e36; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all 0.2s; text-align: left; }
+.submitting-a-request-popup-faq-nav-button:hover { background: #f7f7f9; border-color: #008834; }
+.submitting-a-request-popup-faq-nav-button.active { background: #f7f7f9; border-color: #008834; color: #008834; font-weight: 600; }
+.submitting-a-request-popup-faq-nav-button .submitting-a-request-popup-faq-solutions-icon { display: flex; align-items: center; }
+.submitting-a-request-popup-faq-content-area { flex: 1; background: #fdfdfb; border: 1px solid #e2ded9; border-radius: 8px; min-height: 400px; }
+.submitting-a-request-popup-faq-content-panel { display: none; padding: 24px 28px; animation: faqFadeIn 0.3s; }
+.submitting-a-request-popup-faq-content-panel.active { display: block; }
+@keyframes faqFadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+.submitting-a-request-popup-faq-content-panel h2 { font-weight: 600; color: #008834; margin-bottom: 16px; display: inline-flex; align-items: center; gap: 10px; }
+.submitting-a-request-popup-faq-content-panel h2 .submitting-a-request-popup-faq-solutions-icon { display: inline-flex; align-items: center; }
+.submitting-a-request-popup-faq-content-panel h3 { font-weight: 600; color: #2b2e36; margin-top: 20px; margin-bottom: 12px; }
+.submitting-a-request-popup-faq-subsection-content { max-height: none; overflow: visible; opacity: 1; }
+.submitting-a-request-popup-faq-content-panel ul { list-style: none; }
+.submitting-a-request-popup-faq-content-panel li { color: #2b2e36; padding: 10px 16px; margin-bottom: 8px; background: #f7f7f9; border-left: 3px solid #008834; border-radius: 8px; display: flex; align-items: center; gap: 10px; }
+.submitting-a-request-popup-faq-content-panel.panel-block li { display: block; }
+.submitting-a-request-popup-faq-content-panel li i { color: #008834; font-size: 16px; flex-shrink: 0; }
+.submitting-a-request-popup-faq-alert-box { background: #fff3cb; border: 1px solid #ffcf71; border-radius: 8px; padding: 12px 16px; margin: 16px 0; color: #2b2e36; display: flex; align-items: center; gap: 10px; }
+.submitting-a-request-popup-faq-info-box { background: #ddf1ff; border: 1px solid #87c6f8; border-radius: 8px; padding: 12px 16px; margin: 16px 0; color: #2b2e36; display: flex; align-items: center; gap: 10px; }
+.submitting-a-request-popup-faq-tip-box { background: #e9f9e9; border: 1px solid #bdf0bb; border-radius: 8px; padding: 12px 16px; margin: 16px 0; color: #2b2e36; display: flex; align-items: center; gap: 10px; }
+
+/* --- Module 3: card header + End user / IT-to-IT view switch --- */
+.need-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
+.need-header .need-title { margin: 0; }
+.view-switch { display: inline-flex; gap: 0; background: #f7f7f9; border-radius: 8px; padding: 4px; border: 1px solid #e2ded9; }
+.view-toggle { display: flex; align-items: center; gap: 8px; padding: 10px 20px; border: none; background: transparent; color: #2b2e36; font-size: 14px; font-weight: 500; border-radius: 6px; cursor: pointer; transition: all 0.2s ease; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.view-toggle i { font-size: 16px; transition: color 0.2s ease; }
+.view-toggle:hover { color: #008834; }
+.view-toggle.active { background: #008834; color: #fdfdfb; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+
+/* --- Module 3: other / info footer line --- */
+.other-or-info { text-align: center; margin-top: 24px; color: #2b2e36; opacity: 0.7; }
+.other-text-link, .info-text-link { text-decoration: underline !important; }
+.other-text-link, .info-text-link, .other-or-info-text-separator { color: #008834; font-weight: 500; }
+.other-text-link:hover, .other-text-link:focus, .other-text-link:active,
+.info-text-link:hover, .info-text-link:focus, .info-text-link:active { color: #2a853b; text-decoration: none; }
+
+/* --- i-need-something responsive --- */
+@media (max-width: 768px) {
+    .submitting-a-request-popup-faq-handbook-container { flex-direction: column; }
+    .submitting-a-request-popup-faq-sidebar { flex-direction: row; flex-wrap: wrap; }
+    .submitting-a-request-popup-faq-nav-button { flex: 1 1 calc(50% - 4px); }
+}
+@media (max-width: 767px) {
+    .submitting-a-request-popup-faq-app-modal { padding: 12px; }
+    .submitting-a-request-popup-faq-app-modal-submitting-a-request-popup-faq-header { padding: 16px 20px; }
+    .submitting-a-request-popup-faq-app-modal-body { padding: 20px; }
+    .need-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+}

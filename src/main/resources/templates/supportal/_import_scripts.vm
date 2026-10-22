@@ -1,0 +1,25 @@
+## Shared client scripts. Seed the context path first, then load the plain-JS
+## modules (served, NOT Velocity-parsed) in dependency order:
+##   core.js defines window.Supportal -> shell/shared/page modules register
+##   into it -> boot.js runs the boot sequence. Order here MUST mirror the
+##   <resource> order in atlassian-plugin.xml. See docs/ARCHITECTURE.md §3.
+<script>window.SUPPORTAL_BASE = "$!{baseUrl}";</script>
+#set($jsBase = "$!{baseUrl}/download/resources/com.enefit.fnd.supportal:supportal-resources")
+<script src="${jsBase}/core.js"></script>
+<script src="${jsBase}/shell/journey-nav.js"></script>
+<script src="${jsBase}/shared/popup-modal.js"></script>
+<script src="${jsBase}/shared/request-list.js"></script>
+<script src="${jsBase}/pages/home/my-requests.js"></script>
+<script src="${jsBase}/pages/access-or-permissions/access-or-permissions.js"></script>
+<script src="${jsBase}/pages/access-or-permissions/application.js"></script>
+<script src="${jsBase}/pages/access-or-permissions/somewhere-else.js"></script>
+<script src="${jsBase}/pages/i-need-something/i-need-something.js"></script>
+<script src="${jsBase}/pages/user/approvals.js"></script>
+<script src="${jsBase}/boot.js"></script>
+<!-- React islands: tags assembled server-side by SupportalServlet via
+     a private WebResourceAssembler (superbatch excluded, so no Jira page
+     baggage): AMD loader -> Jira's host React 18.3.x -> our bundle.
+     Hand-written script tags CANNOT replace this: the bundle's AMD externals
+     are only satisfied when the WRM loads its declared dependencies.
+     See docs/ARCHITECTURE.md #5.3. -->
+$!{reactResources}

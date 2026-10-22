@@ -1,0 +1,236 @@
+#set($pageTitle = "Network folder - ITabi")
+#parse("templates/supportal/_shell_top.vm")
+
+<main class="supportal-main">
+    <div class="journey-container">
+        <nav class="journey-nav">
+            <ul class="journey-steps">
+                <li class="journey-step completed">
+                    <a href="$!{baseUrl}/plugins/servlet/supportal" class="step-main">
+                        <div class="step-circle"><i class="pi pi-home"></i></div>
+                        <div class="step-label label-small" data-i18n data-en="ITSM Portal" data-et="ITSM Portaal" data-ru="ITSM Портал">ITSM Portal</div>
+                    </a>
+                    <div class="connector-line"></div>
+                    <div class="step-alternatives">
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/something-is-broken-or-not-working" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-exclamation-triangle"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Something is broken or not working" data-et="Midagi on katki või ei tööta" data-ru="Что-то сломано или не работает">Something is broken or not working</div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/itak-services" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-shield"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="ITAK services" data-et="ITAK teenused" data-ru="Услуги ITAK">ITAK services</div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="journey-step completed">
+                    <a href="$!{baseUrl}/plugins/servlet/supportal/i-need-something" class="step-main">
+                        <div class="step-circle"><i class="pi pi-briefcase"></i></div>
+                        <div class="step-label label-small" data-i18n data-en="I need something" data-et="Mul on midagi vaja" data-ru="Мне нужно что-то">I need something</div>
+                    </a>
+                    <div class="connector-line"></div>
+                    <div class="step-alternatives">
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/hardware" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-desktop"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Hardware" data-et="Riistvara" data-ru="Оборудование">Hardware</div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/telecom" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-phone"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Telecom" data-et="Telekommunikatsioon" data-ru="Телекоммуникации">Telecom</div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/software" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-th-large"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Software" data-et="Tarkvara" data-ru="Программное обеспечение">Software</div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="journey-step completed">
+                    <a href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions" class="step-main">
+                        <div class="step-circle"><i class="pi pi-key"></i></div>
+                        <div class="step-label label-small" data-i18n data-en="Access or permissions" data-et="Ligipääs või õigused" data-ru="Доступ или права">Access or permissions</div>
+                    </a>
+                    <div class="connector-line"></div>
+                    <div class="step-alternatives">
+                        <a href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions/application" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-th-large"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Application" data-et="Rakendus" data-ru="Приложение">Application</div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions/somewhere-else" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-map-marker"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Somewhere else" data-et="Mujal" data-ru="В другом месте">Somewhere else</div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="journey-step active">
+                    <a href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions/network-folder" class="step-main">
+                        <div class="step-circle"><i class="pi pi-folder"></i></div>
+                        <div class="step-label label-small" data-i18n data-en="Network folder" data-et="Võrgukataloog" data-ru="Сетевая папка">Network folder</div>
+                        <div class="current-indicator label-minimum" data-i18n data-en="You are here" data-et="Sa oled siin" data-ru="Вы здесь">You are here</div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="network-folder-page">
+        <section class="network-folder-panel network-folder-page-panel active" id="network-folder-panel"
+                 aria-labelledby="network-folder-title"
+                 data-return-url="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions">
+            <div class="network-folder-panel-header">
+                <div class="network-folder-panel-heading">
+                    <span class="network-folder-panel-icon"><i class="pi pi-folder"></i></span>
+                    <div>
+                        <h1 class="network-folder-panel-title" id="network-folder-title" data-i18n
+                            data-en="Network folder access" data-et="Võrgukataloogi ligipääs"
+                            data-ru="Доступ к сетевой папке">Network folder access</h1>
+                        <p class="network-folder-panel-subtitle" data-i18n
+                           data-en="Choose a folder path and the access level you need."
+                           data-et="Valige võrgukataloogi tee ja vajalik ligipääsutase."
+                           data-ru="Выберите путь к сетевой папке и необходимый уровень доступа.">Choose a folder path and the access level you need.</p>
+                    </div>
+                </div>
+                <a class="network-folder-panel-close" id="network-folder-close"
+                   href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions"
+                   data-i18n-attr="aria-label" data-en-aria-label="Back" data-et-aria-label="Tagasi"
+                   data-ru-aria-label="Назад" aria-label="Back">
+                    <i class="pi pi-times"></i>
+                </a>
+            </div>
+
+            <div class="network-folder-panel-body">
+                <div id="network-folder-form-view">
+                    <form id="network-folder-form">
+                        <div class="form-group network-folder-user-group">
+                            <label class="form-label" for="network-folder-user-picker-trigger">
+                                <span data-i18n data-en="User" data-et="Kasutaja" data-ru="Пользователь">User</span>
+                                <span class="required">*</span>
+                            </label>
+                            <div class="user-picker" id="network-folder-user-picker">
+                                <div class="user-picker-trigger" id="network-folder-user-picker-trigger" tabindex="0">
+                                    <i class="pi pi-user user-picker-icon"></i>
+                                    <span class="user-picker-value" id="network-folder-user-picker-value">Select user...</span>
+                                    <i class="pi pi-chevron-down user-picker-arrow" id="network-folder-user-picker-arrow"></i>
+                                </div>
+                                <div class="user-picker-dropdown" id="network-folder-user-picker-dropdown">
+                                    <div class="user-picker-search-wrap">
+                                        <i class="pi pi-search user-picker-search-icon"></i>
+                                        <input type="text" class="user-picker-search" id="network-folder-user-picker-search"
+                                               autocomplete="off" spellcheck="false" placeholder="Search user..."/>
+                                        <button class="user-picker-clear-search" id="network-folder-user-picker-clear-search"
+                                                style="display:none;" type="button" aria-label="Clear search">
+                                            <i class="pi pi-times"></i>
+                                        </button>
+                                    </div>
+                                    <div class="user-picker-list" id="network-folder-user-picker-list">
+                                        <div class="user-picker-empty">
+                                            <i class="pi pi-search" style="font-size:20px;opacity:0.3;margin-bottom:8px;display:block;"></i>
+                                            Type to search users...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="network-folder-user-select" value=""/>
+                        </div>
+
+                        <div class="form-group network-folder-path-group">
+                            <label class="form-label" for="network-folder-path">
+                                <span data-i18n data-en="Network folder path" data-et="Võrgukataloogi tee" data-ru="Путь к сетевой папке">Network folder path</span>
+                                <span class="required">*</span>
+                            </label>
+                            <div class="network-folder-path-picker">
+                                <i class="pi pi-folder-open network-folder-path-icon"></i>
+                                <input class="form-input network-folder-path-input" id="network-folder-path"
+                                       type="text" autocomplete="off" spellcheck="false"
+                                       data-i18n-attr="placeholder"
+                                       data-en-placeholder="Search or enter a folder path..."
+                                       data-et-placeholder="Otsige või sisestage võrgukataloogi tee..."
+                                       data-ru-placeholder="Найдите или введите путь к сетевой папке..."
+                                       placeholder="Search or enter a folder path..."/>
+                                <div class="network-folder-path-results" id="network-folder-path-results" hidden></div>
+                            </div>
+                            <p class="network-folder-field-hint" data-i18n
+                               data-en="Start typing to filter, or choose from the scrollable list."
+                               data-et="Alustage filtreerimiseks kirjutamist või valige keritavast loendist."
+                               data-ru="Начните вводить для фильтрации или выберите из прокручиваемого списка.">Start typing to filter, or choose from the scrollable list.</p>
+                        </div>
+
+                        <div class="network-folder-access-step" id="network-folder-access-step" hidden>
+                            <label class="form-label">
+                                <span data-i18n data-en="What kind of permissions do you want?"
+                                      data-et="Milliseid õigusi soovite?"
+                                      data-ru="Какие права вам нужны?">What kind of permissions do you want?</span>
+                                <span class="required">*</span>
+                            </label>
+                            <div class="network-folder-access-options" id="network-folder-access-options">
+                                <button class="network-folder-access-card" type="button" data-access="read">
+                                    <span class="network-folder-access-icon"><i class="pi pi-eye"></i></span>
+                                    <span>
+                                        <strong data-i18n data-en="Read" data-et="Lugemine" data-ru="Чтение">Read</strong>
+                                        <small data-i18n data-en="View files and folders" data-et="Failide ja kaustade vaatamine" data-ru="Просмотр файлов и папок">View files and folders</small>
+                                    </span>
+                                    <i class="pi pi-check network-folder-access-check"></i>
+                                </button>
+                                <button class="network-folder-access-card" type="button" data-access="write">
+                                    <span class="network-folder-access-icon"><i class="pi pi-pencil"></i></span>
+                                    <span>
+                                        <strong data-i18n data-en="Write" data-et="Kirjutamine" data-ru="Запись">Write</strong>
+                                        <small data-i18n data-en="Create and change files" data-et="Failide loomine ja muutmine" data-ru="Создание и изменение файлов">Create and change files</small>
+                                    </span>
+                                    <i class="pi pi-check network-folder-access-check"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="network-folder-form-error" id="network-folder-form-error" role="alert" hidden></div>
+
+                        <div class="network-folder-description-step" id="network-folder-description-step" hidden>
+                            <div class="form-group">
+                                <label class="form-label" for="network-folder-description" data-i18n
+                                       data-en="Business reason and comments"
+                                       data-et="Äriline põhjus ja kommentaarid"
+                                       data-ru="Бизнес-обоснование и комментарии">Business reason and comments</label>
+                                <p class="network-folder-field-hint" data-i18n
+                                   data-en="Optional. If left empty, we will add a default business reason using the selected folder and user."
+                                   data-et="Valikuline. Kui jätate välja tühjaks, lisame vaikimisi ärilise põhjenduse valitud kataloogi ja kasutaja põhjal."
+                                   data-ru="Необязательно. Если оставить поле пустым, мы добавим стандартное бизнес-обоснование на основе выбранной папки и пользователя.">Optional. If left empty, we will add a default business reason using the selected folder and user.</p>
+                                <textarea class="form-textarea" id="network-folder-description" rows="4"
+                                          data-i18n-attr="placeholder"
+                                          data-en-placeholder="Optional business reason or extra context..."
+                                          data-et-placeholder="Valikuline äriline põhjendus või lisainfo..."
+                                          data-ru-placeholder="Необязательное бизнес-обоснование или дополнительный контекст..."
+                                          placeholder="Optional business reason or extra context..."></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button class="app-btn app-btn-primary" id="network-folder-submit" type="submit"
+                                        data-i18n data-en="Submit request" data-et="Esita taotlus"
+                                        data-ru="Отправить запрос">Submit request</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="network-folder-loading-view" hidden>
+                    <div class="loading-message">
+                        <div class="loading-icon"><i class="pi pi-spin pi-spinner"></i></div>
+                        <p class="loading-text" data-i18n data-en="Submitting request..." data-et="Pöördumine esitatakse..."
+                           data-ru="Отправка запроса...">Submitting request...</p>
+                    </div>
+                </div>
+                <div id="network-folder-success-view" hidden>
+                    <div class="success-message">
+                        <div class="success-icon"><i class="pi pi-check"></i></div>
+                        <p class="success-text" data-i18n data-en="Request submitted successfully."
+                           data-et="Pöördumine on edukalt esitatud." data-ru="Запрос успешно отправлен.">Request submitted successfully.</p>
+                        <p class="success-subtext"><a class="success-link" id="network-folder-success-link"
+                           href="$!{baseUrl}/plugins/servlet/supportal" data-i18n
+                           data-en="View request" data-et="Vaata pöördumist" data-ru="Открыть запрос">View request</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+#parse("templates/supportal/_shell_bottom.vm")

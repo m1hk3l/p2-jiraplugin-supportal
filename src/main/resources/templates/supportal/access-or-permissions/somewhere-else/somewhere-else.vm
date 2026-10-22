@@ -1,0 +1,228 @@
+#set($pageTitle = "Somewhere else - ITabi")
+#parse("templates/supportal/_shell_top.vm")
+
+<main class="supportal-main">
+
+    <!-- Journey breadcrumb (static + data-i18n; step 4 active = Somewhere else) -->
+    <div class="journey-container">
+        <nav class="journey-nav">
+            <ul class="journey-steps">
+
+                <li class="journey-step completed">
+                    <a href="$!{baseUrl}/plugins/servlet/supportal" class="step-main">
+                        <div class="step-circle"><i class="pi pi-home"></i></div>
+                        <div class="step-label label-small" data-i18n data-en="ITSM Portal" data-et="ITSM Portaal" data-ru="ITSM Портал">ITSM Portal</div>
+                    </a>
+                    <div class="connector-line"></div>
+                    <div class="step-alternatives">
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/something-is-broken-or-not-working" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-exclamation-triangle"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Something is broken or not working" data-et="Midagi on katki või ei tööta" data-ru="Что-то сломано или не работает">Something is broken or not working</div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/itak-services" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-shield"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="ITAK services" data-et="ITAK teenused" data-ru="Услуги ITAK">ITAK services</div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="journey-step completed">
+                    <a href="$!{baseUrl}/plugins/servlet/supportal/i-need-something" class="step-main">
+                        <div class="step-circle"><i class="pi pi-briefcase"></i></div>
+                        <div class="step-label label-small" data-i18n data-en="I need something" data-et="Mul on midagi vaja" data-ru="Мне нужно что-то">I need something</div>
+                    </a>
+                    <div class="connector-line"></div>
+                    <div class="step-alternatives">
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/hardware" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-desktop"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Hardware" data-et="Riistvara" data-ru="Оборудование">Hardware</div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/telecom" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-phone"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Telecom" data-et="Telekommunikatsioon" data-ru="Телекоммуникации">Telecom</div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/software" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-th-large"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Software" data-et="Tarkvara" data-ru="Программное обеспечение">Software</div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/new-mailbox-or-mailing-list" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-envelope"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="New mailbox or mailing list" data-et="Uus postkast või meililist" data-ru="Новый почтовый ящик или рассылка">New mailbox or mailing list</div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/presentation-device-or-help" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-video"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Presentation device or help" data-et="Presentatsiooniseade või abi" data-ru="Презентационное устройство или помощь">Presentation device or help</div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="journey-step completed">
+                    <a href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions" class="step-main">
+                        <div class="step-circle"><i class="pi pi-key"></i></div>
+                        <div class="step-label label-small" data-i18n data-en="Access or permissions" data-et="Ligipääs või õigused" data-ru="Доступ или права">Access or permissions</div>
+                    </a>
+                    <div class="connector-line"></div>
+                    <div class="step-alternatives">
+                        <a href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions/application" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-th-large"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Application" data-et="Rakendus" data-ru="Приложение">Application</div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions/network-folder" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-folder"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Network folder" data-et="Võrgukataloog" data-ru="Сетевая папка">Network folder</div>
+                        </a>
+                        <a href="$!{baseUrl}/servicedesk/customer/portal/31/create/354?summary=Access%20to%20database" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-database"></i></div>
+                            <div class="alt-label label-tiny" data-i18n data-en="Database" data-et="Andmebaas" data-ru="База данных">Database</div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="journey-step active">
+                    <a href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions/somewhere-else" class="step-main">
+                        <div class="step-circle"><i class="pi pi-map-marker"></i></div>
+                        <div class="step-label label-small" data-i18n data-en="Somewhere else" data-et="Mujal" data-ru="В другом месте">Somewhere else</div>
+                        <div class="current-indicator label-minimum" data-i18n data-en="You are here" data-et="Sa oled siin" data-ru="Вы здесь">You are here</div>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Request form: Summary + Description -> JSM request type 354 (Access Request) -->
+    <div class="se-page">
+        <div class="se-card">
+
+            <div class="se-card-head">
+                <div class="se-card-head-icon"><i class="pi pi-map-marker"></i></div>
+                <div>
+                    <h1 class="se-card-title" data-i18n
+                        data-en="Request access — somewhere else"
+                        data-et="Taotle ligipääsu — mujale"
+                        data-ru="Запрос доступа — в другом месте">Request access — somewhere else</h1>
+                    <p class="se-card-subtitle" data-i18n
+                       data-en="Didn't find what you were looking for? Describe the access or permission you need and we'll take it from there."
+                       data-et="Ei leidnud sobivat valikut? Kirjelda, millist ligipääsu või õigust vajad, ja me tegeleme edasi."
+                       data-ru="Не нашли подходящий вариант? Опишите, какой доступ или права вам нужны, и мы займёмся этим.">Didn't find what you were looking for? Describe the access or permission you need and we'll take it from there.</p>
+                </div>
+            </div>
+
+            <div id="se-form-view">
+                <form id="se-form" novalidate>
+                    <div class="form-group">
+                        <label class="form-label" for="se-summary"><span data-i18n
+                               data-en="Summary" data-et="Kokkuvõte" data-ru="Тема">Summary</span> <span class="required">*</span></label>
+                        <input id="se-summary" class="form-input" type="text" maxlength="250"
+                               autocomplete="off"
+                               data-i18n-attr="placeholder"
+                               data-en-placeholder="Short title for your request"
+                               data-et-placeholder="Lühike pealkiri sinu taotlusele"
+                               data-ru-placeholder="Краткий заголовок запроса"
+                               placeholder="Short title for your request"/>
+                        <div class="se-field-error" id="se-summary-error" data-i18n
+                             data-en="Please enter a summary"
+                             data-et="Palun sisesta kokkuvõte"
+                             data-ru="Пожалуйста, введите тему">Please enter a summary</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="se-user"><span data-i18n
+                               data-en="User" data-et="Kasutaja" data-ru="Пользователь">User</span> <span class="required">*</span></label>
+                        <div class="se-user-picker">
+                            <input id="se-user" class="form-input" type="text" autocomplete="off"
+                                   role="combobox" aria-autocomplete="list" aria-expanded="false"
+                                   aria-controls="se-user-results"
+                                   data-i18n-attr="placeholder"
+                                   data-en-placeholder="Start typing a name…"
+                                   data-et-placeholder="Alusta nime sisestamist…"
+                                   data-ru-placeholder="Начните вводить имя…"
+                                   placeholder="Start typing a name…"/>
+                            <input id="se-user-key" type="hidden"/>
+                            <ul id="se-user-results" class="se-user-results" role="listbox" style="display:none;"></ul>
+                        </div>
+                        <div class="se-field-hint" data-i18n
+                             data-en="Start typing a name — matching Jira users will appear below; pick one from the list."
+                             data-et="Alusta nime sisestamist — sobivad Jira kasutajad ilmuvad allapoole; vali üks loendist."
+                             data-ru="Начните вводить имя — подходящие пользователи Jira появятся ниже; выберите одного из списка.">Start typing a name — matching Jira users will appear below; pick one from the list.
+                        </div>
+                        <div class="se-field-error" id="se-user-error" data-i18n
+                             data-en="Please select a user from the list"
+                             data-et="Palun vali kasutaja loendist"
+                             data-ru="Пожалуйста, выберите пользователя из списка">Please select a user from the list
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="se-description"><span data-i18n
+                               data-en="Description" data-et="Kirjeldus" data-ru="Описание">Description</span> <span class="required">*</span></label>
+                        <textarea id="se-description" class="form-textarea" rows="6"
+                                  data-i18n-attr="placeholder"
+                                  data-en-placeholder="Describe what access or permission you need, where, and why."
+                                  data-et-placeholder="Kirjelda, millist ligipääsu või õigust vajad, kus ja miks."
+                                  data-ru-placeholder="Опишите, какой доступ или права вам нужны, где и почему."
+                                  placeholder="Describe what access or permission you need, where, and why."></textarea>
+                        <div class="se-field-error" id="se-description-error" data-i18n
+                             data-en="Please describe what you need"
+                             data-et="Palun kirjelda, mida vajad"
+                             data-ru="Пожалуйста, опишите, что вам нужно">Please describe what you need</div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="app-btn app-btn-primary" id="se-submit-btn" data-i18n
+                                data-en="Submit request" data-et="Esita taotlus" data-ru="Отправить запрос">Submit request</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="se-loading-view" style="display:none;">
+                <div class="loading-message">
+                    <div class="loading-icon"><i class="pi pi-spin pi-spinner"></i></div>
+                    <p class="loading-text" data-i18n
+                       data-en="Submitting your request..."
+                       data-et="Taotluse esitamine..."
+                       data-ru="Отправка запроса...">Submitting your request...</p>
+                </div>
+            </div>
+
+            <div id="se-success-view" style="display:none;">
+                <div class="success-message">
+                    <div class="success-icon"><i class="pi pi-check"></i></div>
+                    <p class="success-text" data-i18n
+                       data-en="Request submitted successfully."
+                       data-et="Taotlus on edukalt esitatud."
+                       data-ru="Запрос успешно отправлен.">Request submitted successfully.</p>
+                    <p class="success-subtext">
+                        <span data-i18n
+                              data-en="You can track your request here:"
+                              data-et="Saad oma taotlust jälgida siin:"
+                              data-ru="Вы можете отслеживать запрос здесь:">You can track your request here:</span>
+                        <a id="se-success-link" class="success-link" target="_blank" rel="noopener noreferrer"
+                           href="$!{baseUrl}/plugins/servlet/desk/site/itsm-portal">My requests</a>
+                    </p>
+                </div>
+            </div>
+
+            <div id="se-error-view" style="display:none;">
+                <div class="error-message">
+                    <div class="error-icon"><i class="pi pi-times"></i></div>
+                    <p class="error-text" data-i18n
+                       data-en="Failed to submit request."
+                       data-et="Taotluse esitamine ebaõnnestus."
+                       data-ru="Не удалось отправить запрос.">Failed to submit request.</p>
+                    <p class="error-subtext" data-i18n
+                       data-en="Please try again later or contact the IT team."
+                       data-et="Palun proovi hiljem uuesti või võta ühendust IT-meeskonnaga."
+                       data-ru="Пожалуйста, попробуйте позже или свяжитесь с ИТ-командой.">Please try again later or contact the IT team.</p>
+                    <div class="form-actions" style="margin-top:20px;">
+                        <button type="button" class="app-btn app-btn-primary" id="se-retry-btn" data-i18n
+                                data-en="Try again" data-et="Proovi uuesti" data-ru="Повторить">Try again</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</main>
+#parse("templates/supportal/_shell_bottom.vm")

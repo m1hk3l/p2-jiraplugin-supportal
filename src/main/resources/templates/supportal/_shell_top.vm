@@ -1,0 +1,15 @@
+## ============================================================================
+## _shell_top.vm — shared page opening. Pair with _shell_bottom.vm.
+## Usage (docs/ARCHITECTURE.md §8):
+##     #set($pageTitle = "ITabi — Some Page")     ## optional; _head.vm falls back
+##     #parse("templates/supportal/_shell_top.vm")
+##       ...page body only...
+##     #parse("templates/supportal/_shell_bottom.vm")
+## ============================================================================
+#parse("templates/supportal/_macros.vm")
+<!DOCTYPE html>
+<html lang="en">
+<head>#parse("templates/supportal/_head.vm")</head>
+<body>
+
+#parse("templates/supportal/_top_nav.vm")

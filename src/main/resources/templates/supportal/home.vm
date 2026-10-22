@@ -1,0 +1,250 @@
+#set($pageTitle = "ITabi - ITSM Portal")
+#parse("templates/supportal/_shell_top.vm")
+
+## React pipeline canary: renders NOTHING unless the URL carries ?reactcheck,
+## in which case it prints the host-supplied React version. Docs: ARCHITECTURE.md #5.4
+<div data-supportal-component="ReactSmokeTest"></div>
+
+  ## das DEMO
+<div class="application-info-container" style="display:flex;align-items:center;gap:14px;">
+  <i class="pi pi-bolt" style="font-size:28px;color:#008834;"></i>
+  <div>
+    <p class="line-default" style="margin:0;">
+      <span data-i18n
+            data-en="Welcome back," data-et="Tere tulemast tagasi," data-ru="С возвращением,">Welcome back,</span>
+      <strong class="highlight">$displayName</strong>
+    </p>
+    <p class="line-small" style="margin:4px 0 0;opacity:.8;" data-i18n
+       data-en="Everything you need from IT, in one place — and now in your language."
+       data-et="Kõik, mida IT-st vajad, ühes kohas — ja nüüd sinu keeles."
+       data-ru="Всё, что nüüd vajad ühes kohas.">Everything you need from IT, in one place — and now in your language.</p>
+  </div>
+</div>
+
+  <div class="supportal-hero-image" style="background-image: url('$!{baseUrl}/download/resources/com.enefit.fnd.supportal:supportal-resources/images/itsm_portal.jpg');">
+    <div class="supportal-hero-filter"></div>
+  </div>
+
+  <main class="supportal-main">
+
+    <!-- Module 1: help cards. Structure + icons live here; text swaps via data-i18n. -->
+    <div class="portal-help-container">
+      <h3 id="portal-help-title" class="portal-help-title">
+        <span data-i18n data-en="How can we help you today?" data-et="Kuidas saame teid t&auml;na aidata?" data-ru="&#1050;&#1072;&#1082; &#1084;&#1099; &#1084;&#1086;&#1078;&#1077;&#1084; &#1087;&#1086;&#1084;&#1086;&#1095;&#1100; &#1074;&#1072;&#1084; &#1089;&#1077;&#1075;&#1086;&#1076;&#1085;&#1103;?">How can we help you today?</span>
+        <a href="#feedback-form" class="jump-to-feedback label-small">
+          <span class="jump-to-feedback-text" data-i18n data-en="Give feedback" data-et="Anna tagasisidet" data-ru="&#1054;&#1089;&#1090;&#1072;&#1074;&#1100; &#1086;&#1090;&#1079;&#1099;&#1074;">Give feedback</span>
+          <i class="pi pi-arrow-down"></i>
+        </a>
+      </h3>
+      <div class="portal-help-grid">
+        <a href="$!{baseUrl}/plugins/servlet/supportal/i-need-something" class="portal-help-card" id="portal-help-card-1">
+          <div class="portal-help-card-icon"><i class="pi pi-briefcase"></i></div>
+          <span class="portal-help-card-title label-small"><span data-i18n data-en="I need something" data-et="Mul on midagi vaja" data-ru="Мне нужно что-то">I need something</span><span class="tooltip-container"><i class="pi pi-info-circle info-icon"></i><span class="tooltip-text"><p class="label-small" data-i18n data-en="Request access or permissions, hardware, telecom services, software, new mailbox or mailing list, or presentation device or help" data-et="Taotle ligipääsu või õigusi, riistvara, telekommunikatsiooniteenuseid, tarkvara, uut postkasti või meililist, või esitlussadet või abi" data-ru="Запросить доступ или права, оборудование, телекоммуникационные услуги, программное обеспечение, новый почтовый ящик или список рассылки, либо презентационное устройство или помощь">Request access or permissions, hardware, telecom services, software, new mailbox or mailing list, or presentation device or help</p></span></span></span>
+        </a>
+        <a href="$!{baseUrl}/plugins/servlet/supportal/something-is-broken-or-not-working" class="portal-help-card" id="portal-help-card-2">
+          <div class="portal-help-card-icon"><i class="pi pi-exclamation-triangle"></i></div>
+          <span class="portal-help-card-title label-small"><span data-i18n data-en="Something is broken or not working" data-et="Midagi on katki või ei tööta" data-ru="Что-то сломано или не работает">Something is broken or not working</span><span class="tooltip-container"><i class="pi pi-info-circle info-icon"></i><span class="tooltip-text"><p class="label-small" data-i18n data-en="Report technical issues, system failures, or service disruptions" data-et="Teata tehnilistest probleemidest, süsteemiriketest või teenusekatkestustest" data-ru="Сообщить о технических проблемах, сбоях системы или нарушениях работы сервиса">Report technical issues, system failures, or service disruptions</p></span></span></span>
+        </a>
+        <a href="$!{baseUrl}/plugins/servlet/supportal/itak-services" class="portal-help-card" id="portal-help-card-3">
+          <div class="portal-help-card-icon"><i class="pi pi-shield"></i></div>
+          <span class="portal-help-card-title label-small"><span data-i18n data-en="ITAK services" data-et="ITAK teenused" data-ru="Услуги ITAK">ITAK services</span><span class="tooltip-container"><i class="pi pi-info-circle info-icon"></i><span class="tooltip-text"><p class="label-small" data-i18n data-en="Alert our ITAK team about suspicious activity or security concerns" data-et="Teavitage meie ITAK tiimi kahtlasest tegevusest või turvariskidest" data-ru="Сообщите нашей команде ITAK о подозрительной активности или угрозах безопасности">Alert our ITAK team about suspicious activity or security concerns</p></span></span></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Module 2: intro text (rich -> lang-block) -->
+    <div id="portal-intro-text" class="portal-section">
+      <div class="lang-block is-active" data-lang="EN">
+<p class="portal-intro-text line-default">If you encounter problems with <strong class="highlight">devices, software, or connections</strong>, you will find quick help and instructions here. We have compiled <strong class="highlight">solutions to common questions</strong> and steps on how to contact <strong class="highlight">IT support</strong>. The goal is to <strong class="highlight">minimize disruption</strong> to your work and <strong class="highlight">keep solutions within easy reach</strong>.</p>
+      </div>
+      <div class="lang-block" data-lang="ET">
+<p class="portal-intro-text line-default">Kui tekib probleem <strong class="highlight">seadmete, tarkvara või ühendustega</strong>, leiad siit kiire abi ja juhised. Oleme koondanud <strong class="highlight">lahendused</strong> levinumatele küsimustele ning sammud, kuidas pöörduda <strong class="highlight">ITabi poole</strong>. Eesmärk on, et sinu töö <strong class="highlight">katkeks võimalikult vähe</strong> ja <strong class="highlight">lahendused oleksid käeulatuses</strong>.</p>
+      </div>
+      <div class="lang-block" data-lang="RU">
+<p class="portal-intro-text line-default">Если возникнут проблемы с <strong class="highlight">устройствами, программным обеспечением или подключениями</strong>, здесь Ты найдёшь быструю помощь и инструкции. Мы собрали <strong class="highlight">решения</strong> наиболее распространённых вопросов и шаги, как обратиться в <strong class="highlight">ITabi</strong>. Наша цель — <strong class="highlight">чтобы твоя работа прерывалась как можно реже</strong>, а <strong class="highlight">нужные решения</strong> всегда были под рукой.</p>
+      </div>
+    </div>
+
+    <!-- Module 4: instructions + product owners (rich, per-language hrefs -> lang-block) -->
+    <div id="categories-wrapper" class="categories-wrapper">
+      <div class="lang-block is-active" data-lang="EN">
+
+        <div class="categories-left">
+          <h3 class="categories-heading">Instructions and materials</h3>
+          <div class="category-grid">
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/en/Konverentsilahendused.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-video"></i><span class="label-small">Virtual meetings</span></a>
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/en/Koost%C3%B6%C3%B6-kolleegidega.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-users"></i><span class="label-small">Collaboration with colleagues</span></a>
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/en/Koost%C3%B6%C3%B6-partneritega.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-user-plus"></i><span class="label-small">Collaboration with partners</span></a>
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/en/Isiklike-seadmete-kasutamine.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-mobile"></i><span class="label-small">Use of personal devices</span></a>
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/en/Tarkvara.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-th-large"></i><span class="label-small">Software</span></a>
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/en/Prinditeenus.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-print"></i><span class="label-small">Printing and scanning</span></a>
+          </div>
+        </div>
+        <div class="categories-right">
+          <h3 class="categories-heading product-owners-title"><i class="pi pi-info-circle"></i>Info For Product Owners</h3>
+          <div class="product-owners-section">
+            <p class="product-owners-text line-small">Replace ad hoc requests with structured intake and workflows.</p>
+            <p class="product-owners-text line-small">Register your interest to define how requests for your product are captured, approved, and fulfilled - automated where possible and integrated where needed. Find out more <a href="https://confluence.energia.sise/confluence/spaces/BWW/pages/268828859/IT+Service+Request+Management" class="info-for-po-link" target="_blank" rel="noopener noreferrer">here</a>.</p>
+            <a href="#" class="cta-button" data-jira-url="/servicedesk/customer/portal/31/create/365?summary=I%20want%20to%20offer%20my%20service%20through%20the%20portal">Get started<span class="cta-tooltip">Request consultation from the IT Service Catalogue Manager</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="lang-block" data-lang="ET">
+
+        <div class="categories-left">
+          <h3 class="categories-heading">Juhendid ja materjalid</h3>
+          <div class="category-grid">
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/Konverentsilahendused.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-video"></i><span class="label-small">Virtuaalsed koosolekud</span></a>
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/Koost%C3%B6%C3%B6-kolleegidega.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-users"></i><span class="label-small">Koostöö kolleegidega</span></a>
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/Koost%C3%B6%C3%B6-partneritega.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-user-plus"></i><span class="label-small">Koostöö partneritega</span></a>
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/Isiklike-seadmete-kasutamine.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-mobile"></i><span class="label-small">Isiklike seadmete kasutamine</span></a>
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/Tarkvara.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-th-large"></i><span class="label-small">Tarkvara</span></a>
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/Prinditeenus.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-print"></i><span class="label-small">Printimine ja skaneerimine</span></a>
+          </div>
+        </div>
+        <div class="categories-right">
+          <h3 class="categories-heading product-owners-title"><i class="pi pi-info-circle"></i>Informatsioon tooteomanikele</h3>
+          <div class="product-owners-section">
+            <p class="product-owners-text line-small">Asendage ad hoc päringud struktureeritud vastuvõtu ja töövoogudega.</p>
+            <p class="product-owners-text line-small">Registreerige oma huvi, et määratleda, kuidas teie toote päringud kogutakse, kinnitatakse ja täidetakse - võimalusel automatiseeritult ja vajadusel integreeritult. Lisateavet leiate <a href="https://confluence.energia.sise/confluence/spaces/BWW/pages/268828859/IT+Service+Request+Management" class="info-for-po-link" target="_blank" rel="noopener noreferrer">siit</a>.</p>
+            <a href="#" class="cta-button" data-jira-url="/servicedesk/customer/portal/31/create/365?summary=Soovin%20pakkuda%20oma%20teenust%20läbi%20portaali">Alusta<span class="cta-tooltip">Taotlege konsultatsiooni IT teenuste kataloogi haldurilt</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="lang-block" data-lang="RU">
+
+        <div class="categories-left">
+          <h3 class="categories-heading">Инструкции и материалы</h3>
+          <div class="category-grid">
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/ru/Konverentsilahendused.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-video"></i><span class="label-small">Виртуальные собрания</span></a>
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/ru/Koost%C3%B6%C3%B6-kolleegidega.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-users"></i><span class="label-small">Сотрудничество с коллегами</span></a>
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/ru/Koost%C3%B6%C3%B6-partneritega.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-user-plus"></i><span class="label-small">Сотрудничество с партнерами</span></a>
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/ru/Isiklike-seadmete-kasutamine.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-mobile"></i><span class="label-small">Использование личных устройств</span></a>
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/ru/Tarkvara.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-th-large"></i><span class="label-small">Программное обеспечение</span></a>
+            <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/ru/Prinditeenus.aspx" class="category-button" target="_blank" rel="noopener noreferrer"><i class="pi pi-print"></i><span class="label-small">Печать и сканирование</span></a>
+          </div>
+        </div>
+        <div class="categories-right">
+          <h3 class="categories-heading product-owners-title"><i class="pi pi-info-circle"></i>Информация для владельцев продукта</h3>
+          <div class="product-owners-section">
+            <p class="product-owners-text line-small">Замените разовые запросы структурированным приёмом и рабочими процессами.</p>
+            <p class="product-owners-text line-small">Зарегистрируйте свой интерес, чтобы определить, как запросы на ваш продукт будут собираться, утверждаться и выполняться - по возможности автоматически и при необходимости с интеграцией. Подробнее <a href="https://confluence.energia.sise/confluence/spaces/BWW/pages/268828859/IT+Service+Request+Management" class="info-for-po-link" target="_blank" rel="noopener noreferrer">здесь</a>.</p>
+            <a href="#" class="cta-button" data-jira-url="/servicedesk/customer/portal/31/create/365?summary=Я%20хочу%20предложить%20свой%20сервис%20через%20портал">Начать<span class="cta-tooltip">Запросите консультацию у менеджера каталога ИТ-услуг</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 3: where to find us (text -> lang-block; image static) -->
+    <div class="itabi-wrapper">
+      <div class="itabi-main-card">
+        <div class="itabi-content-wrapper">
+          <div id="portal-contact-information-text" class="portal-contact-information-text-content">
+      <div class="lang-block is-active" data-lang="EN">
+
+        <p class="itabi-heading line-default">Where to find us?</p>
+        <p class="line-small">ITabi specialists are located on the <strong>3rd floor</strong> of the office at <strong>Lelle 22, Tallinn</strong>.</p>
+        <p class="line-small">You can book a meeting with the Auvere and Jõhvi ITabi by calling in advance.</p>
+        <p class="line-small">IT Helpdesk is available <strong>Mon–Fri 8:00–16:30</strong>. You can contact us by phone <span class="itabi-contact">+372 715 1500</span>, by email <span class="itabi-contact">ITServiceDesk@enefit.com</span>, or by creating a ticket via the <span class="itabi-contact">portal</span>. Support is provided in Estonian, Russian, and English.</p>
+        <p class="itabi-italic-note line-small">All calls made to ITabi are recorded to improve the service quality and user experience.</p>
+        <p class="itabi-italic-note line-small">The recordings are kept in Telia call centre and deleted automatically after two months.</p>
+        <br>
+        <p class="itabi-green-note line-small">If possible, please create your request in a written form.</p>
+      </div>
+      <div class="lang-block" data-lang="ET">
+
+        <p class="itabi-heading line-default">Kuidas meid leida?</p>
+        <p class="line-small">ITabi spetsialistid asuvad Tallinna <strong>Lelle 22 kontori</strong> III korrusel.</p>
+        <p class="line-small">Auvere ja Jõhvi ITabiga saab kohtumise kokku leppida eelnevalt ette helistades.</p>
+        <p class="line-small">ITabi tööaeg on <strong>E–R kell 8.00–16.30</strong>. Meiega saab ühendust võtta telefoni teel <span class="itabi-contact">+372 715 1500</span>, e-posti teel <span class="itabi-contact">ITServiceDesk@enefit.com</span> või luues pöördumise <span class="itabi-contact">portaalis</span>. Tuge pakutakse eesti, vene ja inglise keeles.</p>
+        <p class="itabi-italic-note line-small">Kõik ITabile saabuvad kõned salvestatakse teeninduskvaliteedi ja kasutajakogemuse parandamise eesmärgil ITabi poolt kasutatavas Telia kõnekeskuses.</p>
+        <p class="itabi-italic-note line-small">Kõnesalvestusi säilitatakse kaks kuud ja seejärel kustutatakse need süsteemist automaatselt.</p>
+        <br>
+        <p class="itabi-green-note line-small">Palume eelistada võimalusel kirjalikku pöördumist.</p>
+      </div>
+      <div class="lang-block" data-lang="RU">
+
+        <p class="itabi-heading line-default">Как нас найти?</p>
+        <p class="line-small">Специалисты ITаbi находятся на <strong>III этаже офиса</strong> по адресу <strong>Лелле, 22, Таллинн</strong>.</p>
+        <p class="line-small">Договориться о встрече с ITabi специалистами в Йыхви и Аувере можно по предварительной договоренности.</p>
+        <p class="line-small">ITabi работает с <strong>понедельника по пятницу 8:00–16:30</strong>. С нами можно связаться по телефону <span class="itabi-contact">+372 715 1500</span>, по электронной почте <span class="itabi-contact">ITServiceDesk@enefit.com</span> или создав обращение через <span class="itabi-contact">портал</span>. Поддержка предоставляется на эстонском, русском и английском языках.</p>
+        <p class="itabi-italic-note line-small">Все звонки, поступающие в ITabi, записываются в центре обслуживания Telia, который используется ITabi для повышения качества обслуживания и улучшения качества работы пользователей.</p>
+        <p class="itabi-italic-note line-small">Записи звонков хранятся в течение двух месяцев, а затем автоматически удаляются из системы.</p>
+        <br>
+        <p class="itabi-green-note line-small">При возможности просим отдавать предпочтение созданию письменного обращения.</p>
+      </div>
+          </div>
+          <div class="itabi-image-wrapper">
+            <img src="$!{baseUrl}/plugins/servlet/desk/resource/layouts/55/images/asukoht.png" alt="ITabi location">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 5: FAQ (declarative lang-blocks) + feedback (JS-injected) as the two
+         items of ONE 2-column grid. Active FAQ lang-block and the feedback wrapper are
+         display:contents, so .faq-section and the injected .feedback-container are the
+         real grid items (a plain wrapper div would become the grid item instead). -->
+    <div class="feedback-faq-container">
+      <div class="lang-block is-active" data-lang="EN">
+<div class="faq-section">
+        <h3 class="faq-title"><i class="pi pi-book"></i>Frequently Asked Questions</h3>
+        <div class="faq-list">
+          <details class="faq-details"><summary class="faq-summary label-small">How can I access internal applications from home?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>To access internal applications from home, you need to <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FDigitalWorkplace%2FShared%20Documents%2FFiles%2FFiles%20eng%2FVPN%5Fkasutamise%5Fjuhend%5FENG%2Epdf&parent=%2Fsites%2FDigitalWorkplace%2FShared%20Documents%2FFiles%2FFiles%20eng" target="_blank" class="faq-link">connect your computer via VPN</a>. Please ensure that your username in the login window is in the format <strong class="highlight">"firstname.lastname"</strong>. If your email address appears instead of the username, the connection may still work, but functionality might be limited.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">How to start using personal devices?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>You can find the necessary instructions on how to use M365 applications on your mobile devices <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/en/Isiklike-seadmete-kasutamine.aspx" target="_blank" class="faq-link">here</a>. For security reasons, mobile apps can be used with versions no older than <strong class="highlight">Android 13.0</strong> and <strong class="highlight">iOS 18.0</strong>. Please note that using a personal device for business applications is not supported.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">How to print?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>You can find the necessary information about printing <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/en/Prinditeenus.aspx" target="_blank" class="faq-link">here</a>.</p><p>If you are using a Mac, to connect a printer, you first need to <strong class="highlight">add and configure it</strong>. This is a <strong class="highlight">one-time activity</strong>, the next time you print, you don't need to add the printer again. The instructions can be found <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/en/Prinditeenuse-kasutamine-Macbookiga.aspx" target="_blank" class="faq-link">here</a>.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">What should I do if my name changes?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>ITabi will be <strong class="highlight">automatically notified</strong> and will contact you regarding the name change.</p><p>To ensure you can work smoothly with your <strong class="highlight">new name</strong>, the changes also need to be made in the information systems. Your <strong class="highlight">participation is required</strong> for this process. ITabi will contact you soon via <strong class="highlight">Teams or phone</strong> to schedule a convenient time.</p><p><strong>Please note:</strong> to make these changes, you <strong class="highlight">must be on the office network</strong>, but you <strong class="highlight">do not need to come to ITabi in person</strong>. The process usually takes <strong class="highlight">at least 1 hour</strong>, and ITabi will <strong class="highlight">schedule the time directly in your calendar</strong>.</p><p>All systems will <strong class="highlight">continue using your old name</strong> until the update is complete.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">What is the equipment return process for employees leaving the company?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>When an <strong class="highlight">employee leaves Eesti Energia</strong>, they must return <strong class="highlight">all IT equipment</strong> in their possession, including cables and chargers, to ITabi.</p><p><strong class="highlight">ITabi is automatically notified</strong> if a HR specialist enters an employee's <strong class="highlight">employment contract end date</strong> in the HR portal. ITabi will contact the employee who is leaving or their <strong class="highlight">direct supervisor</strong> to agree on the <strong class="highlight">time of returning the equipment</strong>.</p><p>If you are also using a <strong class="highlight">company telephone number</strong>, then we will also agree on <strong class="highlight">assigning or closing the number</strong>.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">How can I buy a device?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>Employees can purchase an IT device only during a <strong class="highlight">regular computer exchange</strong>. If a device currently used by an employee of Eesti Energia becomes outdated and needs to be replaced, <strong class="highlight">IT support will first assess whether the device can still be used elsewhere within the group</strong>.</p><p>If IT support determines that the device is no longer needed within the group, the device can then be <strong class="highlight">purchased by the employee</strong>.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">Where can I find the used devices online store?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>The online store for used devices can be accessed here: <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/en/Kasutatud-IT-seadmete-pood.aspx" target="_blank" class="faq-link">Used IT-devices Store</a></p></div></details>
+        </div>
+      </div>
+      </div>
+      <div class="lang-block" data-lang="ET">
+<div class="faq-section">
+        <h3 class="faq-title"><i class="pi pi-book"></i>Korduma Kippuvad Küsimused</h3>
+        <div class="faq-list">
+          <details class="faq-details"><summary class="faq-summary label-small">Kuidas ma saan kodust ettevõtte sisemistele rakendustele ligi?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>Sisemistele rakendustele kodust ligipääsemiseks peate <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FDigitalWorkplace%2FShared%20Documents%2FFiles%2FVPN%5Fkasutamise%5Fjuhend%5FEST%2Epdf&parent=%2Fsites%2FDigitalWorkplace%2FShared%20Documents%2FFiles" target="_blank" class="faq-link">ühendama oma arvuti VPN-iga</a>. Palun veenduge, et sisselogimisaknas oleks teie kasutajanimi vormingus <strong class="highlight">"eesnimi.perekonnanimi"</strong>. Kui kasutajanime asemel kuvatakse teie e-posti aadress, võib ühendus siiski toimida, kuid funktsionaalsus on piiratud.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">Kuidas alustada isiklike seadmete kasutamist?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>Vajalikud juhised M365 rakenduste kasutamiseks mobiilseadmetes leiate <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/Isiklike-seadmete-kasutamine.aspx" target="_blank" class="faq-link">siit</a>. Turvakaalutustel saab mobiilseid äppe kasutada mitte vanema versiooniga kui <strong class="highlight">Android 13.0</strong> ja <strong class="highlight">iOS 18.0</strong>. Pange tähele, et isiklikku seadet ärirakenduste jaoks ei toetata.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">Kuidas printida?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>Vajalikku teavet printimise kohta leiate <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/Prinditeenus.aspx" target="_blank" class="faq-link">siit</a>.</p><p>Kui kasutate Maci, tuleb printeri ühendamiseks see esmalt arvuti seadetes <strong class="highlight">lisada ja konfigureerida</strong>. See on <strong class="highlight">ühekordne tegevus</strong>, järgmisel korral ei pea printerit uuesti lisama. Juhised leiate <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/Prinditeenuse-kasutamine-Macbookiga.aspx" target="_blank" class="faq-link">siit</a>.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">Mida teha, kui minu nimi muutub?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>ITabi saab <strong class="highlight">automaatse teate</strong> ja võtab teiega ühendust seoses nime muutusega.</p><p>Selleks, et saaksid oma <strong class="highlight">uue nimega</strong> sujuvalt tegutseda, tuleb muudatused teha ka infosüsteemides. Nende sisseviimiseks on oluline Sinu <strong class="highlight">osalus</strong>. ITabi võtab Sinuga peagi ise ühendust <strong class="highlight">Teamsi või telefoni teel</strong>, et leida sobiv ühine aeg.</p><p><strong>Pange tähele:</strong> muudatuste tegemiseks, on Sul vaja kindlasti <strong class="highlight">olla kontorivõrgus</strong>, <strong class="highlight">ITabisse aga kohale tulema ei pea</strong>. Aega tuleb varuda <strong class="highlight">vähemalt 1 tund</strong>, ning ITabi <strong class="highlight">määrab aja otse teie kalendrisse</strong>.</p><p>Kõik süsteemid <strong class="highlight">kasutavad teie vana nime</strong>, kuni uuendus on lõpule viidud.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">Milline on seadmete tagastamise protsess ettevõttest lahkuvate töötajate jaoks?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p><strong class="highlight">Eesti Energiast lahkudes</strong> tuleb kõik töötaja valduses olnud <strong class="highlight">IT-seadmed</strong>, sealhulgas ka nendega kaasas olnud juhtmed ja laadimiskaablid, tagastada ITabisse.</p><p>Kui personalitöötaja on HR portaali sisestanud töötaja <strong class="highlight">töölepingu lõppemise kuupäeva</strong>, saab ITabi selle kohta <strong class="highlight">automaatselt teate</strong>. ITabi võtab lahkuva töötajaga või tema <strong class="highlight">otsese juhiga</strong> ühendust, et kokku leppida <strong class="highlight">seadmete tagastamise aeg</strong>.</p><p>Kui sinu kasutuses on ka <strong class="highlight">ettevõtte telefoninumber</strong>, siis lepime kokku numbri <strong class="highlight">loovutamise või sulgemise</strong> osas.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">Kuidas ma saan seadet osta?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>Töötajad saavad IT-seadme osta ainult <strong class="highlight">korrapärase arvutivahetuse raames</strong>. Kui Eesti Energia töötaja kasutuses olev seade on vananenud ja vajab väljavahetamist, <strong class="highlight">siis enne arvutivahetust hindab ITabi, kas kontsernis leidub seadmele veel kasutust</strong>.</p><p>Kui ITabi on andnud hinnagu, et kontsernis pole seadmele enam kasutust, saab <strong class="highlight">seadme välja osta</strong>.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">Kus ma leian kasutatud IT-seadmete veebipoe?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>Kasutatud IT-seadmete veebipoodi pääseb ligi siin: <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/Kasutatud-IT-seadmete-pood.aspx" target="_blank" class="faq-link">Kasutatud IT-seadmete pood</a></p></div></details>
+        </div>
+      </div>
+      </div>
+      <div class="lang-block" data-lang="RU">
+<div class="faq-section">
+        <h3 class="faq-title"><i class="pi pi-book"></i>Часто Задаваемые Вопросы</h3>
+        <div class="faq-list">
+          <details class="faq-details"><summary class="faq-summary label-small">Как я могу получить доступ к внутренним приложениям из дома?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>Чтобы получить доступ к внутренним приложениям из дома, необходимо <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FDigitalWorkplace%2FShared%20Documents%2FFiles%2FFiles%20rus%2FVPN%5Fkasutamise%5Fjuhend%5FRUS%2Epdf&parent=%2Fsites%2FDigitalWorkplace%2FShared%20Documents%2FFiles%2FFiles%20rus" target="_blank" class="faq-link">подключить компьютер к VPN</a>. Пожалуйста, убедитесь, что ваше имя пользователя в окне входа указано в формате <strong class="highlight">"имя.фамилия"</strong>. Если вместо имени пользователя отображается ваш адрес электронной почты, подключение все равно может работать, но функциональность будет ограничена.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">Как начать использовать личные устройства?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>Необходимые инструкции по использованию приложений M365 на мобильных устройствах можно найти <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/ru/Isiklike-seadmete-kasutamine.aspx" target="_blank" class="faq-link">здесь</a>. В целях безопасности мобильные приложения можно использовать с версиями не старше <strong class="highlight">Android 13.0</strong> и <strong class="highlight">iOS 18.0</strong>. Обратите внимание, что использование личного устройства для бизнес-приложений не поддерживается.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">Как печатать?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>Необходимую информацию о печати можно найти <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/ru/Prinditeenus.aspx" target="_blank" class="faq-link">здесь</a>.</p><p>Если вы используете Mac, для подключения принтера, его нужно предварительно <strong class="highlight">добавить и настроить</strong> в настройках компьютера. Это <strong class="highlight">разовая операция</strong>, в следующий раз Вам не нужно будет снова добавлять принтер. Инструкции можно найти <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/ru/Prinditeenuse-kasutamine-Macbookiga.aspx" target="_blank" class="faq-link">здесь</a>.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">Что делать, если мое имя изменилось?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>ITabi получит <strong class="highlight">автоматическое уведомление</strong> и свяжется с вами по поводу изменения имени.</p><p>Чтобы вы могли работать с <strong class="highlight">новым именем</strong> без проблем, изменения также необходимо внести в информационные системы. Для этого процесса <strong class="highlight">требуется ваше участие</strong>. ITabi свяжется с вами в ближайшее время через <strong class="highlight">Teams или по телефону</strong>, чтобы согласовать удобное время.</p><p><strong>Обратите внимание:</strong> для внесения изменений вы <strong class="highlight">должны находиться в офисной сети</strong>, но <strong class="highlight">приходить в ITabi лично не нужно</strong>. Процесс обычно занимает <strong class="highlight">не менее 1 часа</strong>, а ITabi <strong class="highlight">назначит время напрямую в вашем календаре</strong>.</p><p>Все системы <strong class="highlight">будут использовать ваше старое имя</strong> до завершения обновления.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">Каков процесс возврата оборудования для сотрудников, покидающих компанию?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p><strong class="highlight">При уходе из Eesti Energia</strong> все находящееся у работника <strong class="highlight">ИТ-оборудование</strong>, включая прилагаемые к нему провода и кабели для зарядки, необходимо вернуть в IT-помощь.</p><p>Если работник по персоналу в HR-портале ввел дату <strong class="highlight">окончания трудового договора</strong> работника, IT-помощь <strong class="highlight">автоматически получит уведомление</strong> об этом. IT-помощь свяжется с уходящим работником или его <strong class="highlight">непосредственным руководителем</strong>, чтобы согласовать <strong class="highlight">время возврата оборудования</strong>.</p><p>Если вы также используете <strong class="highlight">номер телефона предприятия</strong>, мы договоримся о <strong class="highlight">передаче или закрытии номера</strong>.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">Как я могу купить устройство?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>Возможность приобретения ИТ-оборудования доступна пользователям только в рамках <strong class="highlight">плановой замены компьютера</strong>. Если оборудование, используемое работником Eesti Energia, устарело и требует замены, перед заменой компьютера <strong class="highlight">IT-помощь оценит, найдется ли в концерне возможность для его применения</strong>.</p><p>Если IT-помощь определит, что оборудование больше нельзя использовать в концерне, то его можно будет <strong class="highlight">выкупить</strong>.</p></div></details>
+          <details class="faq-details"><summary class="faq-summary label-small">Где я могу найти интернет-магазин бывших в использовании IT-устройств?<i class="pi pi-chevron-down"></i></summary><div class="faq-answer label-small"><p>Доступ к интернет-магазину бывших в использовании IT-устройств можно получить здесь: <a href="https://energiaee.sharepoint.com/sites/DigitalWorkplace/SitePages/ru/Kasutatud-IT-seadmete-pood.aspx" target="_blank" class="faq-link">Магазин бывших в использовании IT-устройств</a></p></div></details>
+        </div>
+      </div>
+      </div>
+      ## React island (FeedbackWizard.jsx): the trilingual feedback wizard.
+      ## Replaced the JS-injected widget from the former js/page-home.js —
+      ## structure now exists once in JSX, only the strings per language.
+      <div id="feedback-container-wrapper" class="grid-contents" data-supportal-component="FeedbackWizard"></div>
+    </div>
+
+    <!-- My requests: titles swap via data-i18n; the two lists are fetched from JSM by JS. -->
+    <div class="myreq-wrapper">
+      <div class="myreq-card">
+        <h3 class="myreq-card-title" id="myreq-open-title"><i class="pi pi-inbox"></i><span data-i18n data-en="My open requests" data-et="Minu avatud p&ouml;&ouml;rdumised" data-ru="&#1052;&#1086;&#1080; &#1086;&#1090;&#1082;&#1088;&#1099;&#1090;&#1099;&#1077; &#1086;&#1073;&#1088;&#1072;&#1097;&#1077;&#1085;&#1080;&#1103;">My open requests</span></h3>
+        <div class="myreq-list" id="myreq-open-list"></div>
+      </div>
+      <div class="myreq-card">
+        <h3 class="myreq-card-title" id="myreq-closed-title"><i class="pi pi-check-square"></i><span data-i18n data-en="My closed requests" data-et="Minu suletud p&ouml;&ouml;rdumised" data-ru="&#1052;&#1086;&#1080; &#1079;&#1072;&#1082;&#1088;&#1099;&#1090;&#1099;&#1077; &#1086;&#1073;&#1088;&#1072;&#1097;&#1077;&#1085;&#1080;&#1103;">My closed requests</span></h3>
+        <div class="myreq-list" id="myreq-closed-list"></div>
+      </div>
+    </div>
+
+  </main>
+#parse("templates/supportal/_shell_bottom.vm")

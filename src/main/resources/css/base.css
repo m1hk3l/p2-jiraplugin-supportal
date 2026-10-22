@@ -1,0 +1,34 @@
+/* base.css — reset, typography, page scaffold, hero, main container, generic i18n carrier, and page-agnostic text-size utilities. LOADS FIRST. Served (not Velocity-parsed): #id / @media selectors are safe here. */
+/* ===================== Base reset & page shell ===================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #fdfdfb; }
+body, body * {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+.highlight { color: #008834; font-weight: 600; opacity: 1; }
+
+/* Hero image (standalone port of Refined rw_background_image) */
+.supportal-hero-image { height: 300px; background-size: cover; background-position: 50% 35%; position: relative; }
+.supportal-hero-filter { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.25); }
+
+/* Page container */
+.supportal-main { max-width: 1300px; margin: 0 auto; padding: 0 24px 64px 24px; }
+main.supportal-main > * { margin-top: 48px; }
+
+
+/* ===================== Generic i18n carrier ===================== */
+/* lang-block: rich multilingual content; JS toggles .is-active.
+   display:contents keeps the wrapper out of the box tree, so children
+   (e.g. .categories-left/.categories-right) stay direct grid/flex items.
+   EN ships with .is-active in the markup as the no-JS fallback. */
+.lang-block { display: none; }
+.lang-block.is-active { display: contents; }
+/* injection wrapper that must not become a grid/flex item itself */
+.grid-contents { display: contents; }
+
+
+/* page-agnostic text-size utilities (formerly in access-ineed.css) */
+.label-minimum { font-size: 10px; line-height: 12px; }
+.label-tiny    { font-size: 12px; line-height: 16px; }
+.label-large   { font-size: 20px; line-height: 24px; }

@@ -1,0 +1,133 @@
+#set($pageTitle = "Access or permissions - ITabi")
+#parse("templates/supportal/_shell_top.vm")
+
+<main class="supportal-main">
+    <div class="journey-container">
+        <nav class="journey-nav">
+            <ul class="journey-steps">
+                <li class="journey-step completed">
+                    <a href="$!{baseUrl}/plugins/servlet/supportal" class="step-main">
+                        <div class="step-circle"><i class="pi pi-home"></i></div>
+                        <div class="step-label label-small" id="step1-main"></div>
+                        <div class="current-indicator label-minimum">You are here</div>
+                    </a>
+                    <div class="connector-line"></div>
+                    <div class="step-alternatives">
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/something-is-broken-or-not-working" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-exclamation-triangle"></i></div>
+                            <div class="alt-label label-tiny" id="step1-alt1"></div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/itak-services" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-shield"></i></div>
+                            <div class="alt-label label-tiny" id="step1-alt2"></div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="journey-step completed">
+                    <a href="$!{baseUrl}/plugins/servlet/supportal/i-need-something" class="step-main">
+                        <div class="step-circle"><i class="pi pi-briefcase"></i></div>
+                        <div class="step-label label-small" id="step2-main"></div>
+                        <div class="current-indicator label-minimum">You are here</div>
+                    </a>
+                    <div class="connector-line"></div>
+                    <div class="step-alternatives">
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/hardware" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-desktop"></i></div>
+                            <div class="alt-label label-tiny" id="step2-alt1"></div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/telecom" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-phone"></i></div>
+                            <div class="alt-label label-tiny" id="step2-alt2"></div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/software" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-th-large"></i></div>
+                            <div class="alt-label label-tiny" id="step2-alt3"></div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/new-mailbox-or-mailing-list" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-envelope"></i></div>
+                            <div class="alt-label label-tiny" id="step2-alt4"></div>
+                        </a>
+                        <a href="$!{baseUrl}/plugins/servlet/desk/category/presentation-device-or-help" class="alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-video"></i></div>
+                            <div class="alt-label label-tiny" id="step2-alt5"></div>
+                        </a>
+                        <a href="$!{baseUrl}/servicedesk/customer/portal/31/create/366" class="open-in-modal alt-option not-taken">
+                            <div class="alt-circle"><i class="pi pi-times-circle"></i></div>
+                            <div class="alt-label label-tiny" id="step2-alt6"></div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="journey-step active">
+                    <a href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions" class="step-main">
+                        <div class="step-circle"><i class="pi pi-key"></i></div>
+                        <div class="step-label label-small" id="step3-main"></div>
+                        <div class="current-indicator label-minimum" id="current-indicator"></div>
+                    </a>
+                </li>
+
+                <li class="journey-step">
+                    <a href="#" class="step-main">
+                        <div class="step-circle"><i class="pi pi-ellipsis-h"></i></div>
+                        <div class="step-label label-small"></div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="need-container">
+        <h3 id="need-title" class="need-title" data-i18n
+            data-en="Which access or permissions do you need to add or remove?"
+            data-et="Millist ligipääsu või õigusi soovite lisada või eemaldada?"
+            data-ru="Какие права или доступ вы хотите добавить или удалить?">Which access or permissions do you need to add or remove?</h3>
+        <div class="need-grid">
+            <a class="need-card" id="need-card-application"
+               href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions/application">
+                <div class="need-card-icon"><i class="pi pi-th-large"></i></div>
+                <div class="need-card-title label-small"><span data-i18n data-en="Application" data-et="Rakendus" data-ru="Приложение">Application</span><span class="tooltip-container"><i class="pi pi-info-circle info-icon"></i><span class="tooltip-text"><p data-i18n data-en="Request access to an application" data-et="Rakendusele ligipääsu taotlemine" data-ru="Запрос доступа к приложению">Request access to an application</p></span></span></div>
+            </a>
+            <a class="need-card" id="need-card-network-folder"
+               href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions/network-folder">
+                <div class="need-card-icon"><i class="pi pi-folder"></i></div>
+                <div class="need-card-title label-small"><span data-i18n data-en="Network folder" data-et="Võrgukataloog" data-ru="Сетевая папка">Network folder</span><span class="tooltip-container"><i class="pi pi-info-circle info-icon"></i><span class="tooltip-text"><p data-i18n data-en="Access to network folders" data-et="Ligipääs võrgukataloogidele" data-ru="Доступ к сетевым папкам">Access to network folders</p></span></span></div>
+            </a>
+            <a class="need-card" id="need-card-database"
+               data-i18n-attr="href"
+               data-en-href="$!{baseUrl}/servicedesk/customer/portal/31/create/354?summary=Access%20to%20database"
+               data-et-href="$!{baseUrl}/servicedesk/customer/portal/31/create/354?summary=Ligip%C3%A4%C3%A4s%20andmebaasile"
+               data-ru-href="$!{baseUrl}/servicedesk/customer/portal/31/create/354?summary=%D0%94%D0%BE%D1%81%D1%82%D1%83%D0%BF%20%D0%BA%20%D0%B1%D0%B0%D0%B7%D0%B5%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85"
+               href="$!{baseUrl}/servicedesk/customer/portal/31/create/354?summary=Access%20to%20database">
+                <div class="need-card-icon"><i class="pi pi-database"></i></div>
+                <div class="need-card-title label-small"><span data-i18n data-en="Database" data-et="Andmebaas" data-ru="База данных">Database</span><span class="tooltip-container"><i class="pi pi-info-circle info-icon"></i><span class="tooltip-text"><p data-i18n data-en="Permissions for database usage" data-et="Andmebaasi kasutamiseks vajalikud õigused" data-ru="Права для работы с базой данных">Permissions for database usage</p></span></span></div>
+            </a>
+            <a class="need-card" id="need-card-usb-rights"
+               href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions/usb-rights">
+                <div class="need-card-icon"><i class="pi pi-upload"></i></div>
+                <div class="need-card-title label-small"><span data-i18n data-en="USB rights" data-et="USB-õigused" data-ru="USB-права">USB rights</span><span class="tooltip-container"><i class="pi pi-info-circle info-icon"></i><span class="tooltip-text"><p data-i18n data-en="USB device access" data-et="Ligipääs USB-seadmete kasutamiseks" data-ru="Разрешение на использование USB-устройств">USB device access</p></span></span></div>
+            </a>
+            <a class="need-card" id="need-card-external-user"
+               data-i18n-attr="href"
+               data-en-href="$!{baseUrl}/servicedesk/customer/portal/31/create/352?summary=External%20user%20account%20creation"
+               data-et-href="$!{baseUrl}/servicedesk/customer/portal/31/create/352?summary=V%C3%A4liskasutaja%20konto%20loomine"
+               data-ru-href="$!{baseUrl}/servicedesk/customer/portal/31/create/352?summary=%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%83%D1%87%D1%91%D1%82%D0%BD%D0%BE%D0%B9%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B8%20%D0%B2%D0%BD%D0%B5%D1%88%D0%BD%D0%B5%D0%B3%D0%BE%20%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F"
+               href="$!{baseUrl}/servicedesk/customer/portal/31/create/352?summary=External%20user%20account%20creation">
+                <div class="need-card-icon"><i class="pi pi-users"></i></div>
+                <div class="need-card-title label-small"><span data-i18n data-en="External user account creation" data-et="Väliskasutaja konto loomine" data-ru="Создание учётной записи внешнего пользователя">External user account creation</span><span class="tooltip-container"><i class="pi pi-info-circle info-icon"></i><span class="tooltip-text"><p data-i18n data-en="Request for creating external user accounts" data-et="Väliskasutaja konto loomise taotlus" data-ru="Запрос на создание учётной записи внешнего пользователя">Request for creating external user accounts</p></span></span></div>
+            </a>
+            <a class="need-card" id="need-card-email"
+               href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions/email-and-distribution-list">
+                <div class="need-card-icon"><i class="pi pi-envelope"></i></div>
+                <div class="need-card-title label-small"><span data-i18n data-en="Email and distribution list" data-et="E-post ja meililist" data-ru="Электронная почта и список рассылки">Email and distribution list</span><span class="tooltip-container"><i class="pi pi-info-circle info-icon"></i><span class="tooltip-text"><p data-i18n data-en="Access to email and distribution lists" data-et="E-post ja meililisti õigused" data-ru="Доступ к почте и спискам рассылки">Access to email and distribution lists</p></span></span></div>
+            </a>
+            <a class="need-card" id="need-card-somewhere-else"
+               href="$!{baseUrl}/plugins/servlet/supportal/access-or-permissions/somewhere-else">
+                <div class="need-card-icon"><i class="pi pi-map-marker"></i></div>
+                <div class="need-card-title label-small"><span data-i18n data-en="Somewhere else" data-et="Mujal" data-ru="В другом месте">Somewhere else</span><span class="tooltip-container"><i class="pi pi-info-circle info-icon"></i><span class="tooltip-text"><p data-i18n data-en="Request access to something not listed here" data-et="Taotle ligipääsu millelegi, mida pole siin loendis" data-ru="Запросить доступ к тому, чего нет в этом списке">Request access to something not listed here</p></span></span></div>
+            </a>
+        </div>
+    </div>
+</main>
+
+#parse("templates/supportal/_shell_bottom.vm")

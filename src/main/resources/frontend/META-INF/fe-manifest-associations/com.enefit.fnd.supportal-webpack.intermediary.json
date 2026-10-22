@@ -1,0 +1,6 @@
+{
+  "packageName": "supportal-frontend",
+  "outputDirectoryFiles": [
+    "supportal-react.js"
+  ]
+}

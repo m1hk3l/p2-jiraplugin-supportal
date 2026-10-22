@@ -1,0 +1,9 @@
+## ============================================================================
+## _shell_bottom.vm — shared page closing. Pair with _shell_top.vm.
+## Loads the client scripts (namespace core -> modules -> boot, plus the React
+## island resources) and closes the document.
+## ============================================================================
+#parse("templates/supportal/_import_scripts.vm")
+
+</body>
+</html>

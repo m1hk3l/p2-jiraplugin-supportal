@@ -1,0 +1,21 @@
+<bundles>
+  <web-resource key="entrypoint-supportal-react">
+    <transformation extension="js">
+      <transformer key="jsI18n"/>
+    </transformation>
+    <context>supportal</context>
+    <dependency>com.atlassian.plugins.atlassian-plugins-webresource-plugin:context-path</dependency>
+    <dependency>com.atlassian.plugins.react:react-core-amd</dependency>
+    <dependency>com.atlassian.plugins.react:react-dom-amd</dependency>
+    <resource type="download" name="supportal-react.js" location="frontend/supportal-react.js"/>
+  </web-resource>
+  <web-resource key="assets-5801406f-4d97-4301-bc39-431fee2b2e01">
+    <transformation extension="js">
+      <transformer key="jsI18n"/>
+    </transformation>
+    <transformation extension="soy">
+      <transformer key="soyTransformer"/>
+      <transformer key="jsI18n"/>
+    </transformation>
+  </web-resource>
+</bundles>

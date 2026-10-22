@@ -1,0 +1,80 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="i18n" location="supportal"/>
+    
+    <!-- add our web resources.
+         Trees mirror the site map (docs/ARCHITECTURE.md §2-4), in four tiers:
+         core -> shell (every page) -> shared (some pages) -> pages (one page).
+         ORDER MATTERS and mirrors the load order in the templates:
+         js/core.js defines the window.Supportal namespace and must be first;
+         js/boot.js runs the boot sequence and must be last.
+         css files cascade: base -> shell -> shared -> pages. -->
+    <web-resource key="supportal-resources" name="supportal Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+
+        <resource type="download" name="base.css"                 location="/css/base.css"/>
+        <resource type="download" name="shell/top-nav.css"        location="/css/shell/top-nav.css"/>
+        <resource type="download" name="shell/journey-nav.css"    location="/css/shell/journey-nav.css"/>
+        <resource type="download" name="shared/need-cards.css"    location="/css/shared/need-cards.css"/>
+        <resource type="download" name="pages/home.css"           location="/css/pages/home.css"/>
+        <resource type="download" name="pages/access-or-permissions.css" location="/css/pages/access-or-permissions.css"/>
+        <resource type="download" name="pages/application.css"    location="/css/pages/application.css"/>
+        <resource type="download" name="pages/somewhere-else.css" location="/css/pages/somewhere-else.css"/>
+        <resource type="download" name="pages/i-need-something.css" location="/css/pages/i-need-something.css"/>
+        <resource type="download" name="pages/approvals.css"      location="/css/pages/approvals.css"/>
+
+        <resource type="download" name="core.js"                  location="/js/core.js"/>
+        <resource type="download" name="shell/journey-nav.js"     location="/js/shell/journey-nav.js"/>
+        <resource type="download" name="shared/popup-modal.js"    location="/js/shared/popup-modal.js"/>
+        <resource type="download" name="shared/request-list.js"   location="/js/shared/request-list.js"/>
+        <resource type="download" name="pages/home/my-requests.js" location="/js/pages/home/my-requests.js"/>
+        <resource type="download" name="pages/access-or-permissions/access-or-permissions.js" location="/js/pages/access-or-permissions/access-or-permissions.js"/>
+        <resource type="download" name="pages/access-or-permissions/application.js" location="/js/pages/access-or-permissions/application.js"/>
+        <resource type="download" name="pages/access-or-permissions/somewhere-else.js" location="/js/pages/access-or-permissions/somewhere-else.js"/>
+        <resource type="download" name="pages/i-need-something/i-need-something.js" location="/js/pages/i-need-something/i-need-something.js"/>
+        <resource type="download" name="pages/user/approvals.js"  location="/js/pages/user/approvals.js"/>
+        <resource type="download" name="boot.js"                  location="/js/boot.js"/>
+
+        <resource type="download" name="images/" location="/images"/>
+
+        <context>supportal</context>
+    </web-resource>
+
+
+    <!-- Top navigation entry point: takes users from the Jira UI to the Supportal -->
+    <web-item key="supportal-top-nav-link" name="Supportal Top Navigation Link"
+              section="system.top.navigation.bar" weight="100">
+        <label key="supportal.topnav.label"/>
+        <tooltip key="supportal.topnav.tooltip"/>
+        <link linkId="supportal-top-nav-link">/plugins/servlet/supportal</link>
+    </web-item>
+
+    <!-- THE Supportal: a standalone server-rendered portal page (same
+         page-replacement architecture Refined used). One servlet owns the
+         /supportal/* URL space; routing happens on pathInfo. -->
+    <servlet key="supportal-servlet" name="Supportal Servlet"
+             class="com.enefit.fnd.servlet.SupportalServlet">
+        <description key="supportal.servlet.description">Serves the Supportal pages.</description>
+        <url-pattern>/supportal</url-pattern>
+        <url-pattern>/supportal/*</url-pattern>
+    </servlet>
+
+    <!-- JSM module: whitelists the Supportal URL space for portal-only /
+         unlicensed customer accounts. Without this, JSM's customer lockout
+         filter intercepts the request and 302s the user to
+         /servicedesk/customer/portal/N before our servlet is ever reached.
+         (This is the same mechanism that makes Refined's /plugins/servlet/desk/*
+         pages reachable by customers.) Requires JSM to be installed. -->
+    <customercontext key="supportal-customer-context" path="/plugins/servlet/supportal">
+        <uri regex=".*"/>
+    </customercontext>
+
+</atlassian-plugin>

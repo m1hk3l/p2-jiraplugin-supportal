@@ -1,0 +1,25 @@
+
+<header class="supportal-topbar">
+    <a class="supportal-topbar-link" title="ITSM Portal" href="$!{baseUrl}/plugins/servlet/supportal">
+        <img src="$!{baseUrl}/download/resources/com.enefit.fnd.supportal:supportal-resources/images/EElogo.png" alt="ITSM Portal">
+        <span class="supportal-topbar-wordmark">ITabi</span>
+    </a>
+
+    <!-- Quick links: My requests + My approvals. Both are supportal pages served by
+         our own router (no Refined /desk/ paths, no iframes). My approvals renders a
+         native-styled list via the documented servicedeskapi request endpoint. -->
+    <nav class="supportal-topnav-links">
+        <a class="supportal-topnav-link" href="$!{baseUrl}/plugins/servlet/supportal/user/approvals?approvals=open">
+            ## exemplar of the #t i18n macro (_macros.vm); convert other
+            ## hand-written data-i18n spans to this form as templates are touched
+            #t("My approvals" "Minu kinnitused" "&#1052;&#1086;&#1080; &#1089;&#1086;&#1075;&#1083;&#1072;&#1089;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103;")
+            <i class="pi pi-angle-right"></i>
+        </a>
+    </nav>
+
+    <div class="supportal-lang-switcher" id="supportal-lang-switcher">
+        <button type="button" data-lang="EN">EN</button>
+        <button type="button" data-lang="ET">ET</button>
+        <button type="button" data-lang="RU">RU</button>
+    </div>
+</header>

@@ -1,0 +1,53 @@
+/* shell/journey-nav.css — the site journey breadcrumb: path from the front door to the current location and back. Chrome tier: rendered wherever the shell places it. */
+/* ===================== Module A: journey breadcrumb ===================== */
+.journey-container { max-width: 1300px; max-height: 280px; margin: 0 auto; background: #f6f7fa; }
+.journey-nav { position: relative; padding: 3rem 0; width: 100%; }
+.journey-steps { position: relative; display: flex; justify-content: space-between; align-items: flex-start; list-style: none; flex-direction: row; padding: 0; z-index: 1; width: 100%; gap: 50px; }
+.journey-step { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; flex: 1; min-width: 0px; }
+.journey-step:not(:last-child)::after { content: ""; position: absolute; top: 25px; left: calc(50% + 25px); right: calc(-100% + 50% - 25px); height: 3px; background: #e2ded9; z-index: 0; transition: background 0.6s ease; }
+.journey-step.completed:not(:last-child)::after { background: linear-gradient(90deg, #008834 0%, #2a853b 100%); box-shadow: 0 0 15px rgba(0, 136, 52, 0.3); }
+.journey-step .step-main { display: flex; flex-direction: column; align-items: center; text-decoration: none; }
+.step-circle { width: 50px; height: 50px; border-radius: 50%; background: #fdfdfb; border: 3px solid #e2ded9; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 3px 10px rgba(43, 46, 54, 0.1); position: relative; z-index: 3; }
+.step-circle i { color: #2b2e36; transition: color 0.4s ease; font-size: 16px; }
+.step-circle::before { content: ""; position: absolute; inset: -6px; border-radius: 50%; background: linear-gradient(135deg, #008834, #2a853b); opacity: 0; z-index: -1; transition: opacity 0.4s ease; }
+.journey-step.completed .step-circle { background: linear-gradient(135deg, #008834, #2a853b); border: 3px solid #008834; transform: scale(1.05); box-shadow: 0 5px 15px rgba(0, 136, 52, 0.3); }
+.journey-step.completed .step-circle i { color: #fdfdfb; }
+.journey-step.active .step-circle { background: linear-gradient(135deg, #008834, #2a853b); border: 3px solid #008834; transform: scale(1.15); box-shadow: 0 6px 20px rgba(0, 136, 52, 0.4); animation: pulse 2s infinite; }
+.journey-step.active .step-circle i { color: #fdfdfb; }
+.journey-step.active .step-circle::before { opacity: 1; animation: ripple 2s infinite; }
+@keyframes pulse { 0%, 100% { transform: scale(1.15); } 50% { transform: scale(1.2); } }
+@keyframes ripple { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(1.4); opacity: 0; } }
+.journey-step:hover .step-circle { transform: scale(1.1); border-color: #008834; box-shadow: 0 6px 20px rgba(0, 136, 52, 0.25); }
+.journey-step .step-label { margin-top: 1rem; font-weight: 600; color: #2b2e36; opacity: 0.5; transition: all 0.4s ease; text-align: center; white-space: nowrap; }
+.journey-step.completed .step-label, .journey-step.active .step-label { opacity: 1; color: #008834; font-weight: 700; }
+.current-indicator { margin-top: 0.35rem; color: #008834; font-weight: 600; display: none; text-align: center; white-space: nowrap; }
+.journey-step.active .current-indicator { display: block; }
+.journey-step:not(.completed):not(.active) { opacity: 0.3; pointer-events: none; }
+.journey-step:not(.completed):not(.active) .step-circle { filter: grayscale(1); }
+.journey-step:not(.completed):not(.active) .step-label { opacity: 0.3; }
+.step-alternatives { display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: nowrap; justify-content: space-between; width: 100%; max-width: 180px; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; scrollbar-color: rgba(163, 192, 145, 0.5) transparent; padding-bottom: 8px; scroll-behavior: smooth; }
+.step-alternatives::-webkit-scrollbar { height: 6px; }
+.step-alternatives::-webkit-scrollbar-track { background: transparent; border-radius: 10px; }
+.step-alternatives::-webkit-scrollbar-thumb { background: rgba(163, 192, 145, 0.5); border-radius: 10px; transition: background 0.3s ease; }
+.step-alternatives::-webkit-scrollbar-thumb:hover { background: rgba(0, 136, 52, 0.7); }
+.alt-option { display: flex; flex-direction: column; align-items: center; text-decoration: none; opacity: 0; transition: all 0.4s ease; flex-shrink: 0; }
+.journey-step:first-child .alt-option { width: 85px; }
+.journey-step:not(:first-child) .alt-option { width: 55px; }
+.journey-step.completed .alt-option { opacity: 1; }
+.alt-circle { width: 40px; height: 40px; border-radius: 50%; background: #fdfdfb; border: 2px solid #e2ded9; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 6px rgba(43, 46, 54, 0.08); }
+.alt-circle i { color: #2b2e36; font-size: 14px; }
+.alt-option:hover .alt-circle { border-color: #a3c091; box-shadow: 0 3px 10px rgba(0, 136, 52, 0.2); }
+.alt-option:hover .alt-circle i { color: #008834; }
+.alt-option.not-taken .alt-circle { border-color: #d0c5da; opacity: 0.6; }
+.alt-label { color: #2b2e36; margin-top: 0.35rem; opacity: 0.6; font-weight: 500; text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.alt-option:hover .alt-label { opacity: 1; color: #008834; }
+.connector-line { position: absolute; width: 2px; height: 30px; background: linear-gradient(180deg, #008834 0%, #a3c091 100%); top: 50px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.4s ease; }
+.journey-step.completed .connector-line { opacity: 0.3; }
+.journey-step.active .step-alternatives, .journey-step.active .connector-line { display: none; }
+
+/* responsive */
+@media (min-width: 360px) and (max-width: 767px) {
+    .journey-container { padding: 0 15px; }
+    .journey-nav { padding: 2rem 0; }
+    .step-circle { width: 40px; height: 40px; font-size: 1rem; }
+}

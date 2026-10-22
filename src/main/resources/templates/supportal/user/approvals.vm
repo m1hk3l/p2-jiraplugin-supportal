@@ -1,0 +1,31 @@
+#set($pageTitle = "ITabi - My approvals")
+#parse("templates/supportal/_shell_top.vm")
+
+<main class="supportal-main">
+
+  <!-- Approvals: mirrors Refined's page (header "Approvals" / subline
+       "Waiting for my approval" / list). NOT an iframe and NOT a Refined /desk/
+       link - the list is fetched by renderApprovals() in js/pages/user/approvals.js from the
+       documented endpoint:
+         /rest/servicedeskapi/request?requestOwnership=APPROVER
+              &approvalStatus=MY_PENDING_APPROVAL&requestStatus=OPEN_REQUESTS
+       i.e. the same servicedeskapi request resource the "My requests" widget
+       already uses, just approver-scoped. Rows reuse the .myreq-* styling.
+       renderApprovals guards on #approvals-list, so this is inert elsewhere. -->
+  <div class="myreq-wrapper myreq-wrapper-single">
+    <div class="myreq-card myreq-card-full">
+      <h3 class="myreq-card-title">
+        <i class="pi pi-check-circle"></i>
+        <span data-i18n data-en="Approvals" data-et="Kinnitused" data-ru="&#1057;&#1086;&#1075;&#1083;&#1072;&#1089;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103;">Approvals</span>
+      </h3>
+      <p class="myreq-card-subtitle line-small" data-i18n
+         data-en="Waiting for my approval"
+         data-et="Ootab minu kinnitust"
+         data-ru="&#1054;&#1078;&#1080;&#1076;&#1072;&#1077;&#1090; &#1084;&#1086;&#1077;&#1075;&#1086; &#1089;&#1086;&#1075;&#1083;&#1072;&#1089;&#1080;&#1103;">Waiting for my approval</p>
+
+      <div class="myreq-list" id="approvals-list"></div>
+    </div>
+  </div>
+
+</main>
+#parse("templates/supportal/_shell_bottom.vm")

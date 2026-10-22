@@ -1,0 +1,21 @@
+## _head.vm — INNER <head> content (no <head> wrapper; _shell_top.vm supplies it).
+## Per-page title: set #set($pageTitle = "...") BEFORE #parse-ing the shell.
+## #set/#parse/#if are core Velocity (unlike #define). Falls back if unset.
+## CSS mirrors the site map in tiers (base -> shell -> shared -> pages);
+## ORDER = cascade order and MUST mirror the
+## <resource> order in atlassian-plugin.xml (base first). ARCHITECTURE.md §4.
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+#if($pageTitle)<title>$pageTitle</title>#else<title>ITabi - ITSM Portal</title>#end
+<link rel="stylesheet" href="https://unpkg.com/primeicons@7.0.0/primeicons.css">
+#set($cssBase = "$!{baseUrl}/download/resources/com.enefit.fnd.supportal:supportal-resources")
+<link rel="stylesheet" href="${cssBase}/base.css">
+<link rel="stylesheet" href="${cssBase}/shell/top-nav.css">
+<link rel="stylesheet" href="${cssBase}/shell/journey-nav.css">
+<link rel="stylesheet" href="${cssBase}/shared/need-cards.css">
+<link rel="stylesheet" href="${cssBase}/pages/home.css">
+<link rel="stylesheet" href="${cssBase}/pages/access-or-permissions.css">
+<link rel="stylesheet" href="${cssBase}/pages/application.css">
+<link rel="stylesheet" href="${cssBase}/pages/somewhere-else.css">
+<link rel="stylesheet" href="${cssBase}/pages/i-need-something.css">
+<link rel="stylesheet" href="${cssBase}/pages/approvals.css">

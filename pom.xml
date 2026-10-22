@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.enefit.fnd</groupId>
+    <artifactId>supportal</artifactId>
+    <version>4.0.2-SNAPSHOT</version>
+    <organization>
+        <name>Eesti Energia AS</name>
+        <url>https://www.enefit.com/</url>
+    </organization>
+    <name>supportal</name>
+    <description>This is the com.enefit.fnd:supportal plugin for Atlassian JIRA.</description>
+    <packaging>atlassian-plugin</packaging>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.atlassian.platform.dependencies</groupId>
+                <artifactId>platform-public-api</artifactId>
+                <version>${platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.atlassian.jira</groupId>
+            <artifactId>jira-api</artifactId>
+            <version>${jira.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.plugins</groupId>
+            <artifactId>atlassian-plugins-osgi-javaconfig</artifactId>
+            <version>${osgi.javaconfig.version}</version>
+        </dependency>
+        <!-- OSGi Java Config dependencies -->
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.framework</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- WIRED TEST RUNNER DEPENDENCIES -->
+        <dependency>
+            <groupId>com.atlassian.plugins</groupId>
+            <artifactId>atlassian-plugins-osgi-testrunner</artifactId>
+            <version>${plugin.testrunner.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.templaterenderer</groupId>
+            <artifactId>atlassian-template-renderer-api</artifactId>
+            <version>6.2.3</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- PageBuilderService / WebResourceAssembler: renders the generated
+             React web-resource (entrypoint-supportal-react) into <script> tags
+             for the standalone servlet pages. Version managed by the platform
+             BOM (platform-public-api) imported above. -->
+        <dependency>
+            <groupId>com.atlassian.plugins</groupId>
+            <artifactId>atlassian-plugins-webresource-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.servicedesk</groupId>
+            <artifactId>jira-servicedesk-api</artifactId>
+            <version>${jira.servicedesk.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Uncomment to use TestKit in your project. Details at https://bitbucket.org/atlassian/jira-testkit -->
+        <!-- You can read more about TestKit at https://developer.atlassian.com/display/JIRADEV/Plugin+Tutorial+-+Smarter+integration+testing+with+TestKit -->
+        <!--
+        <dependency>
+            <groupId>com.atlassian.jira.tests</groupId>
+            <artifactId>jira-testkit-client</artifactId>
+            <version>${testkit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.8.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.plugin</groupId>
+            <artifactId>atlassian-spring-scanner-annotation</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    <repositories>
+        <repository>
+            <id>atlassian-public</id>
+            <url>https://packages.atlassian.com/maven/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>atlassian-external</id>
+            <url>https://packages.atlassian.com/maven-external</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>jenkins-public</id>
+            <url>https://repo.jenkins-ci.org/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>atlassian-public</id>
+            <url>https://packages.atlassian.com/maven/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+    <build>
+        <plugins>
+            <!-- Frontend build: runs `npm install` and `npm run build` in
+                 src/main/frontend during generate-resources, using the SYSTEM
+                 Node/npm from the PATH. Deliberately not frontend-maven-plugin:
+                 that plugin downloads its own unsigned Node binary, which the
+                 corporate endpoint protection (ThreatLocker) kills on sight.
+                 The React bundle + generated web-resource descriptor are thus
+                 in place before resources are packaged; atlas-package /
+                 atlas-run need no extra steps. Inner-loop alternative:
+                 `npm run watch` in src/main/frontend + QuickReload. -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>npm-install</id>
+                        <phase>generate-resources</phase>
+                        <goals><goal>exec</goal></goals>
+                        <configuration>
+                            <executable>npm</executable>
+                            <arguments><argument>install</argument></arguments>
+                            <workingDirectory>src/main/frontend</workingDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm-build</id>
+                        <phase>generate-resources</phase>
+                        <goals><goal>exec</goal></goals>
+                        <configuration>
+                            <executable>npm</executable>
+                            <arguments><argument>run</argument><argument>build</argument></arguments>
+                            <workingDirectory>src/main/frontend</workingDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>jira-maven-plugin</artifactId>
+                <version>${amps.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <productVersion>${jira.version}</productVersion>
+                    <productDataVersion>${jira.version}</productDataVersion>
+                    <!-- Uncomment to install TestKit backdoor in JIRA. -->
+                    <!--
+                    <pluginArtifacts>
+                        <pluginArtifact>
+                            <groupId>com.atlassian.jira.tests</groupId>
+                            <artifactId>jira-testkit-plugin</artifactId>
+                            <version>${testkit.version}</version>
+                        </pluginArtifact>
+                    </pluginArtifacts>
+                    -->
+                    <applications>
+                        <application>
+                            <applicationKey>jira-software</applicationKey>
+                            <version>${jira.software.version}</version>
+                        </application>
+                        <application>
+                            <applicationKey>jira-servicedesk</applicationKey>
+                            <version>${jira.servicedesk.version}</version>
+                        </application>
+                    </applications>
+                    <enableQuickReload>true</enableQuickReload>
+                    <!-- Isolation for the restored prod dump: mail off. SSO, AD,
+                         Automation, and ScriptRunner are disabled in the DB by
+                         postgredb-jira/isolate-local.sql — not via UPM Safe Mode. -->
+                    <jvmArgs>-Xms2g -Xmx4g -XX:+ExplicitGCInvokesConcurrent -Datlassian.mail.senddisabled=true -Datlassian.mail.fetchdisabled=true -Datlassian.mail.popdisabled=true</jvmArgs>
+                    <server>local-jira.dev.internal</server>
+                    <httpPort>2990</httpPort>
+                    <contextPath>/jira</contextPath>
+                    <!-- AMPS 9.9 has no dataPath. productDataPath replaces the
+                         default H2 test-resources zip. The archive must contain
+                         <root>/jira-home/dbconfig.xml; it configures postgres72
+                         with schema jiradb. -->
+                    <productDataPath>${basedir}/home-zips/local-postgres-home.zip</productDataPath>
+                    <dataSource>
+                        <driver>org.postgresql.Driver</driver>
+                        <libArtifacts>
+                            <libArtifact>
+                                <groupId>org.postgresql</groupId>
+                                <artifactId>postgresql</artifactId>
+                                <version>${postgresql.driver.version}</version>
+                            </libArtifact>
+                        </libArtifacts>
+                        <defaultDatabase>jdbc:postgresql://localhost:5432/postgres</defaultDatabase>
+                        <systemUsername>postgres</systemUsername>
+                        <systemPassword>postgres</systemPassword>
+                        <!-- MUST stay false once the prod dump is restored. AMPS
+                             prepare-database would otherwise DROP jiradev on every
+                             atlas-run. Restore lives in postgredb-jira/restore.sh. -->
+                        <dropAndReCreateDatabase>false</dropAndReCreateDatabase>
+                        <url>jdbc:postgresql://localhost:5432/jiradev</url>
+                        <schema>jiradb</schema>
+                        <username>jira</username>
+                        <password>jira</password>
+                        <jndi>jdbc/JiraDS</jndi>
+                    </dataSource>
+                    <instructions>
+                        <Atlassian-Plugin-Key>${atlassian.plugin.key}</Atlassian-Plugin-Key>
+                        <!-- Add package to export here -->
+                        <Export-Package>com.enefit.fnd.api, com.enefit.fnd.api.model,</Export-Package>
+                        <!-- Add package import here -->
+                        <Import-Package>org.springframework.osgi.*;resolution:="optional", org.eclipse.gemini.blueprint.*;resolution:="optional", javax.inject*;resolution:="optional", jakarta.inject*;resolution:="optional", javax.portlet*;resolution:="optional", com.atlassian.jira.project.template*;resolution:="optional", com.atlassian.servicedesk.*;resolution:="optional", com.opensymphony.workflow*;resolution:="optional", com.atlassian.templaterenderer, jakarta.servlet*, *</Import-Package>
+                        <!-- Ensure plugin is spring powered -->
+                        <Spring-Context>*</Spring-Context>
+                    </instructions>
+
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>${postgresql.driver.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+    <properties>
+        <jira.version>11.3.12</jira.version>
+        <platform.version>8.0.0</platform.version>
+        <jira.servicedesk.version>11.3.12</jira.servicedesk.version>
+        <jira.software.version>11.3.12</jira.software.version>
+        <amps.version>9.9.1</amps.version>
+        <plugin.testrunner.version>2.0.17</plugin.testrunner.version>
+        <osgi.javaconfig.version>0.6.1</osgi.javaconfig.version>
+        <postgresql.driver.version>42.7.4</postgresql.driver.version>
+        <!-- This property ensures consistency between the key in atlassian-plugin.xml and the OSGi bundle's key. -->
+        <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+    </properties>
+</project>
