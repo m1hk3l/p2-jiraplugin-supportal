@@ -1,8 +1,6 @@
 x-development: &development
   image: localhost/supportal-development:java21
-  build:
-    context: .
-    dockerfile: Containerfile
+  pull_policy: never
   working_dir: /workspace/supportal
   init: true
   user: "0:0"
@@ -50,6 +48,10 @@ services:
 
   dev:
     <<: *development
+    # Build the shared image once; jira reuses it.
+    build:
+      context: .
+      dockerfile: Containerfile
     command: ["ssh"]
     environment:
       <<: *environment

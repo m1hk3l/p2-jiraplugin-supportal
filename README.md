@@ -9,6 +9,7 @@ Jira Service Management portal P2 plugin. Local development runs in Podman conta
 - [Develop](#develop)
 - [Licences](#licences)
 - [Storage](#storage)
+- [Troubleshooting](#troubleshooting)
 - [Configuration and verification](#configuration-and-verification)
 
 ## Start
@@ -29,7 +30,7 @@ podman-compose up -d --build
 podman-compose logs -f jira
 ```
 
-First startup downloads the SDK, Maven dependencies and Jira distributions and builds Supportal, including its frontend. Later starts reuse persistent caches. Open **http://localhost:2990/jira** when Jira is ready.
+The `dev` service builds the shared development image once; `jira` reuses that image. First startup downloads the SDK, Maven dependencies and Jira distributions and builds Supportal, including its frontend. Later starts reuse persistent caches. Open **http://localhost:2990/jira** when Jira is ready.
 
 This is a fresh Jira database. Complete the setup wizard, create a local admin, and use only the supplied timebomb test keys. Set Jira's base URL to `http://localhost:2990/jira`. There is no company database dump, AD or SSO setup. Supportal business flows require local JSM projects, request types, fields and Assets schemas matching the plugin's expectations; this change provisions the development infrastructure, not those business fixtures.
 
@@ -117,6 +118,43 @@ Named volumes hold PostgreSQL data, Jira/build output (`target`), the developer 
 The source is a bind mount of the repository, so edits appear directly in Git. Java dependencies, build output and `node_modules` stay in container volumes. On SELinux hosts the shared source mount uses `:z`.
 
 `podman-compose down -v` deletes **all local database, Jira home and cache data**. Back up anything needed first. Resetting a development environment is not a licence-renewal guarantee.
+
+## Troubleshooting
+
+### Build fails with `no space left on device`
+
+An error writing `/var/tmp/container_images_storage...` means the image builder exhausted storage in its Linux environment. A successful `/tmp/sdk.tar.gz: OK` confirms that the SDK download and checksum passed; the failure happened while committing the image layer.
+
+On Windows/macOS, inspect the existing Podman VM and its filesystems:
+
+```sh
+podman machine list
+podman machine ssh df -h / /var/tmp /var/home
+podman machine ssh df -i / /var/tmp /var/home
+podman system df
+```
+
+On Linux, inspect the host filesystems with `df -h` and `df -i`, plus `podman system df`. Ensure the host disk storing the VM also has free space. The `machine init --disk-size 60` command applies only when creating a new machine; an existing machine keeps its current allocation.
+
+To reclaim failed-build data after all image builds have finished, review the proposed cleanup at the confirmation prompt:
+
+```sh
+podman system prune --build
+```
+
+This cleanup affects the whole Podman connection: stopped containers, unused networks, dangling images/cache and abandoned build containers. Named volumes are retained with this command. Keep any needed data from stopped containers before confirming.
+
+VM disk expansion depends on the installed Podman version and VM provider. Check `podman machine set --help` and the [provider-specific disk-size support](https://docs.podman.io/en/latest/markdown/podman-machine-set.1.html#disk-size-number). Preserve existing volumes when planning any VM replacement.
+
+After freeing enough space, from the updated checkout:
+
+```sh
+podman-compose build dev
+podman-compose up -d
+podman-compose logs -f jira
+```
+
+Only `dev` declares a build; both development services use the same locally built image. This avoids the two simultaneous builds produced by the earlier Compose configuration. Completing the image build is the next runtime check, followed by Jira startup and licence acceptance.
 
 ## Configuration and verification
 
